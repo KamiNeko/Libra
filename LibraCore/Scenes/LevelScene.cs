@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace MonoGameTests.Scenes
 {
-    internal class LevelScene : Scene
+    public class LevelScene : Scene
     {
         public override void Initialize()
         {

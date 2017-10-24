@@ -12,8 +12,7 @@ namespace MonoGameTests
         protected override void Initialize()
         {
             base.Initialize();
-
-            //scene = new TestScene();
+            
             scene = new LevelScene();
         }
     }
