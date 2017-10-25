@@ -35,7 +35,7 @@
  "meta": {
   "app": "http://www.aseprite.org/",
   "version": "1.3-dev",
-  "image": "G:\\projects\\private-git\\MonoGameTests\\MonoGameTests\\Content\\flower02.png",
+  "image": "G:\\projects\\private-git\\Libra\\LibraContent\\Content\\flower02.png",
   "format": "RGBA8888",
   "size": { "w": 256, "h": 64 },
   "scale": "1",
