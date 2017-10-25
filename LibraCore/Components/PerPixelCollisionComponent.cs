@@ -3,7 +3,7 @@ using Nez;
 using Nez.Sprites;
 using System;
 
-namespace MonoGameTests.Components
+namespace LibraCore.Components
 {
     internal class PerPixelCollisionComponent : Component
     {

@@ -1,20 +1,22 @@
 ﻿using Microsoft.Xna.Framework;
-using MonoGameTests.Components;
-using MonoGameTests.Levels;
+using LibraCore.Components;
+using LibraCore.LevelBuilding;
 using Nez;
 using Nez.Sprites;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MonoGameTests.Scenes
+namespace LibraCore.Scenes
 {
     public class LevelScene : Scene
     {
+        public bool LevelEditorModeActive { get; set; }
+
         public override void Initialize()
         {
             base.Initialize();
-            
+
             AddRenderer(new DefaultRenderer());
             ClearColor = Color.Black;
             SetDesignResolution(640, 480, Scene.SceneResolutionPolicy.ShowAllPixelPerfect);
@@ -27,22 +29,34 @@ namespace MonoGameTests.Scenes
         {
             base.Update();
 
-            var spaceshipEntity = Entities.findEntity("space-ship");
+            var spaceshipEntity = Entities.findEntity(LevelConstants.SpaceshipEntiyName);
 
             if (ShipLeftLevel())
             {
-                //spaceshipEntity.getComponent<Sprite>().Color = Color.Green;
-                SwitchToNextLevel();
+                if (LevelEditorModeActive)
+                {
+                    spaceshipEntity.getComponent<Sprite>().Color = Color.Green;
+                }
+                else
+                {
+                    SwitchToNextLevel();
+                }
             }
             else if (ShipHasCollisions())
             {
-                var currentLevelDescriptor = GetCurrentLevelDescriptor();
-                spaceshipEntity.setPosition(currentLevelDescriptor.StartPosition);
-                //spaceshipEntity.getComponent<Sprite>().Color = Color.Red;
+                if (LevelEditorModeActive)
+                {
+                    spaceshipEntity.getComponent<Sprite>().Color = Color.Red;
+                }
+                else
+                {
+                    var currentLevelDescriptor = GetCurrentLevelDescriptor();
+                    spaceshipEntity.setPosition(currentLevelDescriptor.StartPosition);
+                }
             }
-            else
+            else if (LevelEditorModeActive)
             {
-                //spaceshipEntity.getComponent<Sprite>().Color = Color.White;
+                spaceshipEntity.getComponent<Sprite>().Color = Color.White;
             }
         }
 
@@ -116,8 +130,8 @@ namespace MonoGameTests.Scenes
 
             var currentLevelDescriptor = GetCurrentLevelDescriptor();
 
-            var levelLoader = new LevelLoader(ContentManager, currentLevelDescriptor);
-            var entites = levelLoader.CreateEntites();
+            var levelLoader = new LevelBuilder(ContentManager, currentLevelDescriptor);
+            var entites = levelLoader.BuildEntites();
 
             foreach (var entity in entites)
             {

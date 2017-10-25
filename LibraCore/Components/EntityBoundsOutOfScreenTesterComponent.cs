@@ -1,7 +1,7 @@
 ﻿using Nez;
 using Nez.Sprites;
 
-namespace MonoGameTests.Components
+namespace LibraCore.Components
 {
     internal class EntityBoundsOutOfScreenTesterComponent : Component, IUpdatable
     {

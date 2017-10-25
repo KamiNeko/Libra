@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Nez.Sprites;
 using Microsoft.Xna.Framework;
 
-namespace MonoGameTests.Components
+namespace LibraCore.Components
 {
     internal class AnimatedPerPixelCollisionComponent<TEnum> : PerPixelCollisionComponent where TEnum : struct, IComparable, IFormattable
     {

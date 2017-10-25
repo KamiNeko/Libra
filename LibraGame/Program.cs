@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MonoGameTests
+namespace LibraCore
 {
     public static class Program
     {

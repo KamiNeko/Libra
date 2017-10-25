@@ -1,7 +1,7 @@
-﻿using MonoGameTests.Scenes;
+﻿using LibraCore.Scenes;
 using Nez;
 
-namespace MonoGameTests
+namespace LibraCore
 {
     public class MyCore : Core
     {

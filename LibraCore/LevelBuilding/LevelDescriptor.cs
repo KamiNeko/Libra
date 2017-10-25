@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
-namespace MonoGameTests.Levels
+namespace LibraCore.LevelBuilding
 {
     internal class LevelDescriptor
     {

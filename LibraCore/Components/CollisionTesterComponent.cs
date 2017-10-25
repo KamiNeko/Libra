@@ -1,7 +1,7 @@
 ﻿using Nez;
 using System;
 
-namespace MonoGameTests.Components
+namespace LibraCore.Components
 {
     internal class CollisionTesterComponent : Component, IUpdatable
     {

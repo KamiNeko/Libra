@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Input;
 using Nez;
 
-namespace MonoGameTests.Components
+namespace LibraCore.Components
 {
     public class PlayerMovable : Component, IUpdatable
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace MonoGameTests.Levels
+namespace LibraCore.LevelBuilding
 {
     internal class EntityDescriptor
     {

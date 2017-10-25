@@ -1,4 +1,4 @@
-﻿namespace MonoGameTests.Levels
+﻿namespace LibraCore.LevelBuilding
 {
     internal class AnimationDescriptor
     {

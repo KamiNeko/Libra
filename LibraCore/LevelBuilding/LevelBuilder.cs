@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGameTests.Components;
+using LibraCore.Components;
 using Nez;
 using Nez.Sprites;
 using Nez.Systems;
@@ -8,38 +8,38 @@ using Nez.Textures;
 using System;
 using System.Collections.Generic;
 
-namespace MonoGameTests.Levels
+namespace LibraCore.LevelBuilding
 {
-    internal class LevelLoader
+    internal class LevelBuilder
     {
-        public LevelLoader(NezContentManager contentManager, LevelDescriptor levelDescriptor)
+        public LevelBuilder(NezContentManager contentManager, LevelDescriptor levelDescriptor)
         {
             this.contentManager = contentManager ?? throw new ArgumentNullException(nameof(contentManager));
             this.levelDescriptor = levelDescriptor ?? throw new ArgumentNullException(nameof(levelDescriptor));
         }
 
-        public IEnumerable<Entity> CreateEntites()
+        public IEnumerable<Entity> BuildEntites()
         {
             var entites = new List<Entity>();
 
-            entites.Add(CreateSpaceshipEntity());
+            entites.Add(BuildSpaceshipEntity());
             
             foreach (var entityDescriptor in levelDescriptor.EntityDescriptors)
             {
-                entites.Add(CreateEntity(entityDescriptor));
+                entites.Add(BuildEntity(entityDescriptor));
             }
 
             return entites;
         }
 
-        private Entity CreateSpaceshipEntity()
+        private Entity BuildSpaceshipEntity()
         {
-            var entity = new Entity("space-ship");
+            var entity = new Entity(LevelConstants.SpaceshipEntiyName);
             var sprite = new Sprite(contentManager.Load<Texture2D>(SpaceshipTextureName));
             sprite.RenderLayer = 100;
 
             entity.addComponent(sprite);
-            entity.addComponent(CreateSpaceshipDriveSprite());
+            entity.addComponent(BuildSSpaceshipDriveSprite());
             entity.addComponent(new PlayerMovable());
             entity.addComponent(new PerPixelCollisionComponent(sprite));
             entity.addComponent(new CollisionTesterComponent());
@@ -49,7 +49,7 @@ namespace MonoGameTests.Levels
             return entity;
         }
 
-        private Sprite CreateSpaceshipDriveSprite()
+        private Sprite BuildSSpaceshipDriveSprite()
         {
             var spaceshipDriveTexture = contentManager.Load<Texture2D>(SpaceshipDriveTextureName);
             var spaceshipDriveSubtextures = Subtexture.subtexturesFromAtlas(spaceshipDriveTexture, 32, 32);
@@ -71,7 +71,7 @@ namespace MonoGameTests.Levels
             return fireAnimationSprite;
         }
 
-        private Entity CreateEntity(EntityDescriptor entityDescriptor)
+        private Entity BuildEntity(EntityDescriptor entityDescriptor)
         {
             var entity = new Entity(entityDescriptor.EntityName);
 
@@ -123,6 +123,6 @@ namespace MonoGameTests.Levels
         private readonly LevelDescriptor levelDescriptor;
 
         private const string SpaceshipTextureName = "space-ship";
-        private const string SpaceshipDriveTextureName = "space-ship-fire";
+        private const string SpaceshipDriveTextureName = "space-ship-engine";
     }
 }
