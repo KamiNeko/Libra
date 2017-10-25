@@ -2,7 +2,7 @@
 
 namespace LibraCore.LevelBuilding
 {
-    internal class EntityDescriptor
+    public class EntityDescriptor
     {
         public EntityDescriptor()
         {

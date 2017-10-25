@@ -10,7 +10,6 @@ namespace LibraCore.Components
         public void update()
         {
             var sprite = Entity.getComponent<Sprite>();
-
             var bounds = sprite.Bounds;
 
             const float Left = 0.0f;
@@ -18,8 +17,7 @@ namespace LibraCore.Components
             const float Top = 0.0f;
             const float Bottom = 480.0f;
 
-            if (bounds.Left < Left || bounds.Right > Right ||
-                bounds.Top < Top || bounds.Bottom > Bottom)
+            if (bounds.Left < Left || bounds.Right > Right || bounds.Top < Top || bounds.Bottom > Bottom)
             {
                 EntityBoundsOutOfScreen = true;
             }

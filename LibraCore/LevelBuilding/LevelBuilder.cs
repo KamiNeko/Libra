@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace LibraCore.LevelBuilding
 {
-    internal class LevelBuilder
+    public class LevelBuilder
     {
         public LevelBuilder(NezContentManager contentManager, LevelDescriptor levelDescriptor)
         {

@@ -1,6 +1,6 @@
 ﻿namespace LibraCore.LevelBuilding
 {
-    internal class AnimationDescriptor
+    public class AnimationDescriptor
     {
         public bool Active { get; set; }
 

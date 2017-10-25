@@ -34,6 +34,9 @@
     <Reference Include="MonoGame.Framework, Version=3.5.1.1679, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MonoGame.Framework.DesktopGL.3.5.1.1679\lib\net40\MonoGame.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Nez, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\kamineko.nez.0.9.0-alpha\lib\portable45-net45+win8+wpa81\Nez.dll</HintPath>
     </Reference>
@@ -63,6 +66,8 @@
     <Compile Include="LevelBuilding\LevelConstants.cs" />
     <Compile Include="LevelBuilding\LevelDescriptor.cs" />
     <Compile Include="LevelBuilding\LevelBuilder.cs" />
+    <Compile Include="LevelBuilding\LevelDescriptorReader.cs" />
+    <Compile Include="LevelBuilding\LevelDescriptorWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenes\LevelScene.cs" />
   </ItemGroup>

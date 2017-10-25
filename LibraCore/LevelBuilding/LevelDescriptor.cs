@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace LibraCore.LevelBuilding
 {
-    internal class LevelDescriptor
+    public class LevelDescriptor
     {
         public LevelDescriptor()
         {
