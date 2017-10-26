@@ -39,7 +39,7 @@ namespace LibraCore.LevelBuilding
             sprite.RenderLayer = 100;
 
             entity.addComponent(sprite);
-            entity.addComponent(BuildSSpaceshipDriveSprite());
+            entity.addComponent(BuildSpaceshipDriveSprite());
             entity.addComponent(new PlayerMovable());
             entity.addComponent(new PerPixelCollisionComponent(sprite));
             entity.addComponent(new CollisionTesterComponent());
@@ -49,7 +49,7 @@ namespace LibraCore.LevelBuilding
             return entity;
         }
 
-        private Sprite BuildSSpaceshipDriveSprite()
+        private Sprite BuildSpaceshipDriveSprite()
         {
             var spaceshipDriveTexture = contentManager.Load<Texture2D>(SpaceshipDriveTextureName);
             var spaceshipDriveSubtextures = Subtexture.subtexturesFromAtlas(spaceshipDriveTexture, 32, 32);
