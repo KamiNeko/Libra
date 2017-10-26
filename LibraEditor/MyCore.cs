@@ -2,7 +2,7 @@
 using Nez;
 using System;
 
-namespace LibraCore
+namespace LibraEditor
 {
     public class MyCore : Core
     {

@@ -6,23 +6,24 @@ using Nez.Sprites;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 
 namespace LibraCore.Scenes
 {
-    public class LevelScene : Scene
+    public class LevelScene : BaseScene
     {
+        public EventHandler GameOver;
+        public EventHandler GameWon;
+
         public bool LevelEditorModeActive { get; set; }
 
         public override void Initialize()
         {
             base.Initialize();
 
-            AddRenderer(new DefaultRenderer());
-            ClearColor = Color.Black;
-            SetDesignResolution(640, 480, Scene.SceneResolutionPolicy.ShowAllPixelPerfect);
-
             CreateLevelDescriptors();
             SwitchToNextLevel();
+            CreateRemainingLifesText();
         }
 
         public override void Update()
@@ -50,13 +51,31 @@ namespace LibraCore.Scenes
                 }
                 else
                 {
-                    var currentLevelDescriptor = GetCurrentLevelDescriptor();
-                    spaceshipEntity.setPosition(currentLevelDescriptor.StartPosition);
+                    HandleShipCollision(spaceshipEntity);
                 }
             }
             else if (LevelEditorModeActive)
             {
                 spaceshipEntity.getComponent<Sprite>().Color = Color.White;
+            }
+        }
+
+        private void HandleShipCollision(Entity spaceshipEntity)
+        {
+            lifes--;
+
+            if (lifes <= 0)
+            {
+                HandleGameOver();
+            }
+            else
+            {
+                var transition = new FadeTransition() { fadeInDuration = 0.2f, fadeOutDuration = 0.2f, delayBeforeFadeInDuration = 0.0f };
+                Core.startSceneTransition(transition);
+
+                var currentLevelDescriptor = GetCurrentLevelDescriptor();
+                spaceshipEntity.setPosition(currentLevelDescriptor.StartPosition);
+                RecreateRemainingLifesText();
             }
         }
 
@@ -77,66 +96,83 @@ namespace LibraCore.Scenes
 
         private void CreateLevelDescriptors()
         {
-            levelDescriptors.Add(CreateSampleLevelDescriptor());
+            foreach (var levelName in LoadLevelNames().OrderBy(x => x))
+            {
+                levelDescriptors.Add(BuildLevelDescriptor(levelName));
+            }
         }
 
-        private LevelDescriptor CreateSampleLevelDescriptor()
+        private LevelDescriptor BuildLevelDescriptor(string levelFileName)
         {
-            var levelDescriptor = new LevelDescriptor { StartPosition = new Vector2(117, 458) };
+            return new LevelDescriptorReader(levelFileName).Load();
+        }
 
-            levelDescriptor.EntityDescriptors.Add(new EntityDescriptor
+        private string[] LoadLevelNames()
+        {
+            if (!File.Exists(LevelConstants.LevelNamesFileName))
             {
-                EntityName = "level",
-                IsCollidable = true,
-                Position = new Vector2(320, 240),
-                TextureName = "level01",
-                AnimationDescriptor = new AnimationDescriptor
-                {
-                    Active = false
-                }
-            });
+                var sampleLevelNamesFile = Newtonsoft.Json.JsonConvert.SerializeObject(new[] { "level01.json", "level02.json", "level03.json" }, Newtonsoft.Json.Formatting.Indented);
+                File.WriteAllText(LevelConstants.LevelNamesFileName, sampleLevelNamesFile);
 
-            levelDescriptor.EntityDescriptors.Add(new EntityDescriptor
-            {
-                EntityName = "flower02",
-                IsCollidable = true,
-                Position = new Vector2(158f, 153),
-                TextureName = "flower02",
-                AnimationDescriptor = new AnimationDescriptor
-                {
-                    Active = true,
-                    AnimationFramesPerSecond = 2,
-                    StartAnimationFrame = 0,
-                    StopAnimationFrame = 4,
-                    SubtextureHeight = 64,
-                    SubtextureWidth = 64
-                }
-            });
+                throw new Exception("Could not find level names file, I am creating a default one as template - please edit it to match the level name(s) before you restart the application");
+            }
 
-            return levelDescriptor;
+            var levelNamesFileContent = File.ReadAllText(LevelConstants.LevelNamesFileName);
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<string[]>(levelNamesFileContent);
         }
 
         private void SwitchToNextLevel()
         {
+            // TODO: Filter by level entities, otherwise this throws the UI out
             UnloadAllEntites();
 
             currentLevel++;
 
             if (currentLevel > levelDescriptors.Count)
             {
-                // TODO: Game over (with success)
-                throw new NotImplementedException();
+                HandleGameWon();
             }
-
-            var currentLevelDescriptor = GetCurrentLevelDescriptor();
-
-            var levelLoader = new LevelBuilder(ContentManager, currentLevelDescriptor);
-            var entites = levelLoader.BuildEntites();
-
-            foreach (var entity in entites)
+            else
             {
-                AddEntity(entity);
+                var currentLevelDescriptor = GetCurrentLevelDescriptor();
+
+                var levelLoader = new LevelBuilder(ContentManager, currentLevelDescriptor);
+                var entites = levelLoader.BuildEntites();
+
+                foreach (var entity in entites)
+                {
+                    AddEntity(entity);
+                }
             }
+        }
+
+        private void RecreateRemainingLifesText()
+        {
+            DestroyRemainingLifesText();
+            CreateRemainingLifesText();
+        }
+
+        private void DestroyRemainingLifesText()
+        {
+            var textEntity = Entities.findEntity(RemainingLifesTextEntityName);
+            textEntity.detachFromScene();
+            Entities.remove(textEntity);
+        }
+
+        private void CreateRemainingLifesText()
+        {
+            var textEntity = CreateEntity(RemainingLifesTextEntityName);
+            textEntity.addComponent(new TextSprite(Graphics.instance.bitmapFont, $"LIFES: {lifes}", new Vector2(580, 460), Color.Black)).SetRenderLayer(ScreenSpaceRenderLayer);
+        }
+
+        private void HandleGameWon()
+        {
+            GameWon?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void HandleGameOver()
+        {
+            GameOver?.Invoke(this, EventArgs.Empty);
         }
 
         private void UnloadAllEntites()
@@ -152,6 +188,10 @@ namespace LibraCore.Scenes
         }
 
         private int currentLevel = 0;
+        private int lifes = InitialCountOfLifes;
+
+        private const int InitialCountOfLifes = 3;
+        private const string RemainingLifesTextEntityName = "remaining-lifes-text";
 
         private readonly ICollection<LevelDescriptor> levelDescriptors = new List<LevelDescriptor>();
     }

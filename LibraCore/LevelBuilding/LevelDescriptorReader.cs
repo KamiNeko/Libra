@@ -16,7 +16,7 @@ namespace LibraCore.LevelBuilding
             var levelFileContent = File.ReadAllText(levelFileName);
             return Newtonsoft.Json.JsonConvert.DeserializeObject<LevelDescriptor>(levelFileContent);
         }
-
+        
         private readonly string levelFileName;
     }
 }

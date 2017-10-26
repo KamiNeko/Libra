@@ -3,5 +3,7 @@
     public static class LevelConstants
     {
         public const string SpaceshipEntiyName = "space-ship";
+
+        public const string LevelNamesFileName = "levels.json";
     }
 }

@@ -12,7 +12,7 @@ namespace LibraCore.LevelBuilding
 
         public void Save(string levelFileName)
         {
-            var serializedLevel = Newtonsoft.Json.JsonConvert.SerializeObject(levelDescriptor);
+            var serializedLevel = Newtonsoft.Json.JsonConvert.SerializeObject(levelDescriptor, Newtonsoft.Json.Formatting.Indented);
             File.WriteAllText(levelFileName, serializedLevel);            
         }
 
