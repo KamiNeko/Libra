@@ -7,7 +7,7 @@ namespace LibraCore
         [STAThread]
         static void Main()
         {
-            using (var core = new MyCore())
+            using (var core = new Game())
             {
                 core.Run();
             }

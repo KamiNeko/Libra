@@ -4,9 +4,9 @@ using System;
 
 namespace LibraCore
 {
-    public class MyCore : Core
+    public class Game : Core
     {
-        public MyCore() : base(width: 1280, height: 960, isFullScreen: false, enableEntitySystems: false)
+        public Game() : base(width: 1280, height: 960, isFullScreen: false, enableEntitySystems: false)
         {
         }
 
