@@ -9,10 +9,10 @@ namespace LibraCore.Components
 
         public void update()
         {
-            HasCollisions = HasCollisionsWithOtherEntites();
+            CheckCollisionsWithOtherEntites();
         }
 
-        private bool HasCollisionsWithOtherEntites()
+        private void CheckCollisionsWithOtherEntites()
         {
             var ownCollisionComponent = Entity.getComponent<PerPixelCollisionComponent>();
 
@@ -22,6 +22,7 @@ namespace LibraCore.Components
             }
 
             var collisionElements = Entity.scene.FindComponentsOfType<PerPixelCollisionComponent>();
+            var collisionsFound = false;
 
             foreach (var collisionElement in collisionElements)
             {
@@ -29,13 +30,19 @@ namespace LibraCore.Components
                 {
                     if (ownCollisionComponent.HasCollisionWith(collisionElement))
                     {
-                        return true;
+                        collisionsFound = true;
+
+                        // NOTE: Due to random order in the update method, we make sure to update the counterpart of the collision
+                        //  so that we have consistency in collision detection, if we check the other component
+                        if (collisionElement.Entity.getComponent<CollisionTesterComponent>() != null)
+                        {
+                            collisionElement.Entity.getComponent<CollisionTesterComponent>().HasCollisions = true;
+                        }
                     }
                 }
             }
 
-            return false;
+            HasCollisions = collisionsFound;
         }
-
     }
 }

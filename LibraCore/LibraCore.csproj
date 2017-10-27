@@ -60,10 +60,11 @@
   <ItemGroup>
     <Compile Include="Components\AnimatedPerPixelCollisionComponent.cs" />
     <Compile Include="Components\BulletComponent.cs" />
+    <Compile Include="Components\BulletControllerComponent.cs" />
     <Compile Include="Components\CollisionTesterComponent.cs" />
     <Compile Include="Components\EntityBoundsOutOfScreenTesterComponent.cs" />
     <Compile Include="Components\PerPixelCollisionComponent.cs" />
-    <Compile Include="Components\PlayerMovable.cs" />
+    <Compile Include="Components\PlayerControllerComponent.cs" />
     <Compile Include="LevelBuilding\AnimationDescriptor.cs" />
     <Compile Include="LevelBuilding\EntityDescriptor.cs" />
     <Compile Include="LevelBuilding\LevelConstants.cs" />

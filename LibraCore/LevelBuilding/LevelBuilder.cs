@@ -40,10 +40,11 @@ namespace LibraCore.LevelBuilding
 
             entity.addComponent(sprite);
             entity.addComponent(BuildSpaceshipDriveSprite());
-            entity.addComponent(new PlayerMovable());
+            entity.addComponent(new PlayerControllerComponent());
             entity.addComponent(new PerPixelCollisionComponent(sprite));
             entity.addComponent(new CollisionTesterComponent());
             entity.addComponent(new EntityBoundsOutOfScreenTesterComponent());
+            entity.addComponent(new BulletControllerComponent());
 
             entity.transform.setPosition(levelDescriptor.StartPosition);
             return entity;

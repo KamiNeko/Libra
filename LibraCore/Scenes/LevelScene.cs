@@ -7,8 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Audio;
 
 namespace LibraCore.Scenes
 {
@@ -26,8 +24,6 @@ namespace LibraCore.Scenes
             CreateLevelDescriptors();
             SwitchToNextLevel();
             CreateRemainingLifesText();
-
-            shootSoundEffect = ContentManager.Load<SoundEffect>("shoot");
         }
 
         public override void Update()
@@ -57,7 +53,7 @@ namespace LibraCore.Scenes
                     }
                     else
                     {
-                        HandleShipCollision(spaceshipEntity);
+                        HandleShipCollision();
                     }
                 }
                 else if (LevelEditorModeActive)
@@ -65,40 +61,21 @@ namespace LibraCore.Scenes
                     spaceshipEntity.getComponent<Sprite>().Color = Color.White;
                 }
 
-                var shipBulletEntity = Entities.findEntity("player-bullet");
-
-                if (shipBulletEntity != null)
+                var bulletComponents = Entities.findComponentsOfType<BulletComponent>();
+                foreach (var bulletComponent in bulletComponents)
                 {
-                    var component = shipBulletEntity.getComponent<CollisionTesterComponent>();
-                    if (component.HasCollisions)
+                    var entity = bulletComponent.Entity;
+
+                    if (entity.getComponent<CollisionTesterComponent>().HasCollisions ||
+                        entity.getComponent<EntityBoundsOutOfScreenTesterComponent>().EntityBoundsOutOfScreen)
                     {
-                        shipBulletEntity.detachFromScene();
-                    }
-                }
-
-                if (Input.isKeyDown(Microsoft.Xna.Framework.Input.Keys.Space))
-                {
-                    if (shipBulletEntity == null)
-                    {
-                        var entity = CreateEntity("player-bullet");
-                        var sprite = new Sprite(ContentManager.Load<Texture2D>("bullet"));
-                        sprite.SetRenderLayer(200);
-
-                        entity.addComponent(new BulletComponent() { Speed = 100f, Direction = new Vector2(0f, 1f) });
-                        entity.addComponent(new PerPixelCollisionComponent(sprite));
-                        entity.addComponent(new CollisionTesterComponent());                        
-                        entity.addComponent(sprite);
-
-                        var offset = new Vector2(0, 32f);
-                        entity.transform.setPosition(spaceshipEntity.position + offset);
-
-                        shootSoundEffect.CreateInstance().Play();
+                        entity.detachFromScene();
                     }
                 }
             }
         }
-
-        private void HandleShipCollision(Entity spaceshipEntity)
+        
+        private void HandleShipCollision()
         {
             lifes--;
 
@@ -109,11 +86,10 @@ namespace LibraCore.Scenes
             else
             {
                 var transition = new FadeTransition() { fadeInDuration = 0.2f, fadeOutDuration = 0.2f, delayBeforeFadeInDuration = 0.0f };
-                var currentLevelDescriptor = GetCurrentLevelDescriptor();
 
                 transition.onScreenObscured = () =>
                 {
-                    spaceshipEntity.setPosition(currentLevelDescriptor.StartPosition);
+                    ResetLevel();
                 };
 
                 transition.onTransitionCompleted = () =>
@@ -122,11 +98,24 @@ namespace LibraCore.Scenes
                 };
 
                 Core.startSceneTransition(transition);
-
-                RecreateRemainingLifesText();
-
                 sceneTransitionIsActive = true;
             }
+        }
+
+        private void ResetLevel()
+        {
+            var bulletComponents = Entities.findComponentsOfType<BulletComponent>();
+            foreach (var bulletComponent in bulletComponents)
+            {
+                var entity = bulletComponent.Entity;
+                entity.detachFromScene();
+            }
+
+            var currentLevelDescriptor = GetCurrentLevelDescriptor();
+            var spaceshipEntity = Entities.findEntity(LevelConstants.SpaceshipEntiyName);
+            spaceshipEntity.setPosition(currentLevelDescriptor.StartPosition);
+
+            RecreateRemainingLifesText();
         }
 
         private bool ShipHasCollisions()
@@ -184,15 +173,19 @@ namespace LibraCore.Scenes
             }
             else
             {
-                var currentLevelDescriptor = GetCurrentLevelDescriptor();
+                LoadEntitesOfCurrentLevelDescriptor();
+            }
+        }
 
-                var levelLoader = new LevelBuilder(ContentManager, currentLevelDescriptor);
-                var entites = levelLoader.BuildEntites();
+        private void LoadEntitesOfCurrentLevelDescriptor()
+        {
+            var currentLevelDescriptor = GetCurrentLevelDescriptor();
+            var levelLoader = new LevelBuilder(ContentManager, currentLevelDescriptor);
+            var entites = levelLoader.BuildEntites();
 
-                foreach (var entity in entites)
-                {
-                    AddEntity(entity);
-                }
+            foreach (var entity in entites)
+            {
+                AddEntity(entity);
             }
         }
 
@@ -243,9 +236,7 @@ namespace LibraCore.Scenes
 
         private const int InitialCountOfLifes = 3;
         private const string RemainingLifesTextEntityName = "remaining-lifes-text";
-
-        private SoundEffect shootSoundEffect;
-
+        
         private readonly ICollection<LevelDescriptor> levelDescriptors = new List<LevelDescriptor>();
     }
 }
