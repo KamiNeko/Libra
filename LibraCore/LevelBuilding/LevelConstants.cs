@@ -4,6 +4,6 @@
     {
         public const string SpaceshipEntiyName = "space-ship";
 
-        public const string LevelNamesFileName = "levels.json";
+        public const string LevelNamesFileName = "levels/levels.json";
     }
 }

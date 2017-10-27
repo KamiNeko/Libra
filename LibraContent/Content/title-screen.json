@@ -19,7 +19,7 @@
  "meta": {
   "app": "http://www.aseprite.org/",
   "version": "1.3-dev",
-  "image": "G:\\projects\\private-git\\Libra\\Assets\\title-screen.png",
+  "image": "D:\\projects\\git\\Libra\\Assets\\title-screen.png",
   "format": "RGBA8888",
   "size": { "w": 1280, "h": 480 },
   "scale": "1",

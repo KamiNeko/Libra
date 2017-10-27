@@ -1,0 +1,33 @@
+{
+  "StartPosition": "117, 458",
+  "EntityDescriptors": [
+    {
+      "EntityName": "level",
+      "Position": "320, 240",
+      "IsCollidable": true,
+      "TextureName": "level01",
+      "AnimationDescriptor": {
+        "Active": false,
+        "StartAnimationFrame": 0,
+        "StopAnimationFrame": 0,
+        "AnimationFramesPerSecond": 0,
+        "SubtextureWidth": 0,
+        "SubtextureHeight": 0
+      }
+    },
+    {
+      "EntityName": "flower02",
+      "Position": "158, 153",
+      "IsCollidable": true,
+      "TextureName": "flower02",
+      "AnimationDescriptor": {
+        "Active": true,
+        "StartAnimationFrame": 0,
+        "StopAnimationFrame": 4,
+        "AnimationFramesPerSecond": 2,
+        "SubtextureWidth": 64,
+        "SubtextureHeight": 64
+      }
+    }
+  ]
+}
