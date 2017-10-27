@@ -30,33 +30,36 @@ namespace LibraCore.Scenes
         {
             base.Update();
 
-            var spaceshipEntity = Entities.findEntity(LevelConstants.SpaceshipEntiyName);
+            if (!sceneTransitionIsActive)
+            {
+                var spaceshipEntity = Entities.findEntity(LevelConstants.SpaceshipEntiyName);
 
-            if (ShipLeftLevel())
-            {
-                if (LevelEditorModeActive)
+                if (ShipLeftLevel())
                 {
-                    spaceshipEntity.getComponent<Sprite>().Color = Color.Green;
+                    if (LevelEditorModeActive)
+                    {
+                        spaceshipEntity.getComponent<Sprite>().Color = Color.Green;
+                    }
+                    else
+                    {
+                        SwitchToNextLevel();
+                    }
                 }
-                else
+                else if (ShipHasCollisions())
                 {
-                    SwitchToNextLevel();
+                    if (LevelEditorModeActive)
+                    {
+                        spaceshipEntity.getComponent<Sprite>().Color = Color.Red;
+                    }
+                    else
+                    {
+                        HandleShipCollision(spaceshipEntity);
+                    }
                 }
-            }
-            else if (ShipHasCollisions())
-            {
-                if (LevelEditorModeActive)
+                else if (LevelEditorModeActive)
                 {
-                    spaceshipEntity.getComponent<Sprite>().Color = Color.Red;
+                    spaceshipEntity.getComponent<Sprite>().Color = Color.White;
                 }
-                else
-                {
-                    HandleShipCollision(spaceshipEntity);
-                }
-            }
-            else if (LevelEditorModeActive)
-            {
-                spaceshipEntity.getComponent<Sprite>().Color = Color.White;
             }
         }
 
@@ -71,11 +74,23 @@ namespace LibraCore.Scenes
             else
             {
                 var transition = new FadeTransition() { fadeInDuration = 0.2f, fadeOutDuration = 0.2f, delayBeforeFadeInDuration = 0.0f };
+                var currentLevelDescriptor = GetCurrentLevelDescriptor();
+
+                transition.onScreenObscured = () =>
+                {
+                    spaceshipEntity.setPosition(currentLevelDescriptor.StartPosition);
+                };
+
+                transition.onTransitionCompleted = () =>
+                {
+                    sceneTransitionIsActive = false;
+                };
+
                 Core.startSceneTransition(transition);
 
-                var currentLevelDescriptor = GetCurrentLevelDescriptor();
-                spaceshipEntity.setPosition(currentLevelDescriptor.StartPosition);
                 RecreateRemainingLifesText();
+
+                sceneTransitionIsActive = true;
             }
         }
 
@@ -189,6 +204,7 @@ namespace LibraCore.Scenes
 
         private int currentLevel = 0;
         private int lifes = InitialCountOfLifes;
+        private bool sceneTransitionIsActive;
 
         private const int InitialCountOfLifes = 3;
         private const string RemainingLifesTextEntityName = "remaining-lifes-text";
