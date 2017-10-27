@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using Microsoft.Xna.Framework.Audio;
 
 namespace LibraCore.Scenes
 {
@@ -24,6 +25,7 @@ namespace LibraCore.Scenes
             CreateLevelDescriptors();
             SwitchToNextLevel();
             CreateRemainingLifesText();
+            explosionSoundEffect = ContentManager.Load<SoundEffect>("explosion");
         }
 
         public override void Update()
@@ -78,6 +80,8 @@ namespace LibraCore.Scenes
         private void HandleShipCollision()
         {
             lifes--;
+
+            explosionSoundEffect.Play();
 
             if (lifes <= 0)
             {
@@ -162,7 +166,6 @@ namespace LibraCore.Scenes
 
         private void SwitchToNextLevel()
         {
-            // TODO: Filter by level entities, otherwise this throws the UI out
             UnloadAllEntites();
 
             currentLevel++;
@@ -220,6 +223,7 @@ namespace LibraCore.Scenes
 
         private void UnloadAllEntites()
         {
+            // TODO: Test this, I think it will also throw out stuff we need (such as camera)
             Entities.removeAllEntities();
         }
 
@@ -236,6 +240,8 @@ namespace LibraCore.Scenes
 
         private const int InitialCountOfLifes = 3;
         private const string RemainingLifesTextEntityName = "remaining-lifes-text";
+
+        private SoundEffect explosionSoundEffect;
         
         private readonly ICollection<LevelDescriptor> levelDescriptors = new List<LevelDescriptor>();
     }

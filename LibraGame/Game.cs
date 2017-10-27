@@ -18,22 +18,33 @@ namespace LibraCore
 
         private void ShowTitleScreen()
         {
-            var titleScreen = new TitleScreen();
-            titleScreen.TitleScreenSkipped += OnTitleScreenSkipped;
+            if (!transitionIsActive)
+            {
+                var titleScreen = new TitleScreen();
+                titleScreen.TitleScreenSkipped += OnTitleScreenSkipped;
 
-            StartTransitionToNextScene(titleScreen);
+                if (scene == null)
+                {
+                    scene = titleScreen;
+                }
+
+                StartTransitionToNextScene(titleScreen);
+            }
         }
 
         private void OnTitleScreenSkipped(object sender, EventArgs e)
         {
-            var titleScreen = sender as TitleScreen;
-            titleScreen.TitleScreenSkipped -= OnTitleScreenSkipped;
+            if (!transitionIsActive)
+            {
+                var titleScreen = sender as TitleScreen;
+                titleScreen.TitleScreenSkipped -= OnTitleScreenSkipped;
 
-            var levelScene = new LevelScene() { LevelEditorModeActive = false };
-            levelScene.GameWon += OnGameWon;
-            levelScene.GameOver += OnGameOver;
+                var levelScene = new LevelScene() { LevelEditorModeActive = false };
+                levelScene.GameWon += OnGameWon;
+                levelScene.GameOver += OnGameOver;
 
-            StartTransitionToNextScene(levelScene);
+                StartTransitionToNextScene(levelScene);
+            }
         }
 
         private void OnGameWon(object sender, EventArgs e)
@@ -58,13 +69,18 @@ namespace LibraCore
 
         private void StartTransitionToNextScene(Scene nextScene)
         {
-            startSceneTransition(GetSceneTransition(() => nextScene));
+            var transition = GetSceneTransition(() => nextScene);
+            transition.onTransitionCompleted = () => { transitionIsActive = false; };
+            startSceneTransition(transition);
             scene = nextScene;
+            transitionIsActive = true;
         }
 
         private SceneTransition GetSceneTransition(Func<Scene> sceneLoader)
         {
             return new FadeTransition() { fadeInDuration = 0.5f, fadeOutDuration = 0.5f, delayBeforeFadeInDuration = 0.0f };
         }
+
+        private bool transitionIsActive;
     }
 }

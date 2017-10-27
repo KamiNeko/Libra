@@ -91,3 +91,9 @@
 /processorParam:TextureFormat=Color
 /build:bullet.png
 
+#begin explosion.ogg
+/importer:OggImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:explosion.ogg
+
