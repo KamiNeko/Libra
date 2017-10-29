@@ -35,7 +35,7 @@ namespace LibraCore.LevelBuilding
 
         private Entity BuildSpaceshipEntity()
         {
-            var entity = new Entity(LevelConstants.SpaceshipEntiyName);
+            var entity = new Entity(LevelConstants.SpaceshipEntityName);
             var sprite = new Sprite(contentManager.Load<Texture2D>(SpaceshipTextureName));
             sprite.RenderLayer = 100;
 
@@ -49,7 +49,7 @@ namespace LibraCore.LevelBuilding
             {
                 Direction = new Vector2(0f, 1f),
                 Offset = new Vector2(0, 32f),
-                Speed = 50f
+                Speed = 200f
             });
 
             entity.transform.setPosition(levelDescriptor.StartPosition);

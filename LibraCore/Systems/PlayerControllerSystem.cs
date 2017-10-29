@@ -14,8 +14,30 @@ namespace LibraCore.Systems
         {
         }
 
+        public void Freeze(TimeSpan duration)
+        {
+            if (frozen)
+            {
+                frozenDuration += duration;
+                return;
+            }
+
+            frozenTimestamp = DateTime.Now;
+            frozenDuration = duration;
+            frozen = true;
+        }
+
         public override void process(Entity entity)
         {
+            if (frozen && DateTime.Now - frozenTimestamp < frozenDuration)
+            {
+                return;
+            }
+            else if (frozen)
+            {
+                frozen = false;
+            }
+
             var moveDir = Vector2.Zero;
 
             if (Input.isKeyDown(Keys.Left))
@@ -45,5 +67,9 @@ namespace LibraCore.Systems
             var playerControllerComponent = entity.getComponent<PlayerControllerComponent>();
             entity.position += moveDir * playerControllerComponent.Speed * Time.deltaTime;
         }
+
+        private DateTime frozenTimestamp;
+        private TimeSpan frozenDuration;
+        private bool frozen;
     }
 }

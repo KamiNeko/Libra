@@ -48,7 +48,7 @@ namespace LibraCore.Scenes
 
             if (!sceneTransitionIsActive)
             {
-                var spaceshipEntity = Entities.findEntity(LevelConstants.SpaceshipEntiyName);
+                var spaceshipEntity = Entities.findEntity(LevelConstants.SpaceshipEntityName);
 
                 if (ShipLeftLevel())
                 {
@@ -78,7 +78,22 @@ namespace LibraCore.Scenes
                 }
             }
         }
-        
+
+        private bool ShipHasCollisions()
+        {
+            var entity = Entities.findEntity("space-ship");
+            var component = entity.getComponent<CollisionCheckComponent>();
+
+            return component.HasCollisions;
+        }
+
+        private bool ShipLeftLevel()
+        {
+            var entity = Entities.findEntity("space-ship");
+            var component = entity.getComponent<EntityOutOfLevelBoundsTesterComponent>();
+            return component.OutOfBounds;
+        }
+
         private void HandleShipCollision()
         {
             lifes--;
@@ -112,29 +127,20 @@ namespace LibraCore.Scenes
         {
             EntityProcessors.getProcessor<BulletSystem>().Reset();
             EntityProcessors.getProcessor<BulletControllerSystem>().Reset();
+            FreezePlayerControlForSmallDuration();
 
             var currentLevelDescriptor = GetCurrentLevelDescriptor();
-            var spaceshipEntity = Entities.findEntity(LevelConstants.SpaceshipEntiyName);
+            var spaceshipEntity = Entities.findEntity(LevelConstants.SpaceshipEntityName);
             spaceshipEntity.setPosition(currentLevelDescriptor.StartPosition);
 
             RecreateRemainingLifesText();
         }
 
-        private bool ShipHasCollisions()
+        private void FreezePlayerControlForSmallDuration()
         {
-            var entity = Entities.findEntity("space-ship");
-            var component = entity.getComponent<CollisionCheckComponent>();
-
-            return component.HasCollisions;
+            EntityProcessors.getProcessor<PlayerControllerSystem>().Freeze(TimeSpan.FromMilliseconds(1000));
         }
-
-        private bool ShipLeftLevel()
-        {
-            var entity = Entities.findEntity("space-ship");
-            var component = entity.getComponent<EntityOutOfLevelBoundsTesterComponent>();
-            return component.OutOfBounds;
-        }
-
+        
         private void CreateLevelDescriptors()
         {
             foreach (var levelName in LoadLevelNames().OrderBy(x => x))
@@ -175,6 +181,7 @@ namespace LibraCore.Scenes
             else
             {
                 LoadEntitesOfCurrentLevelDescriptor();
+                FreezePlayerControlForSmallDuration();
             }
         }
 
