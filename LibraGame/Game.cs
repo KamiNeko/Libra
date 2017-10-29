@@ -13,6 +13,7 @@ namespace LibraGame
         protected override void Initialize()
         {
             base.Initialize();
+            Transform.shouldRoundPosition = false;
             ShowTitleScreen();
         }
 

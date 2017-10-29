@@ -16,5 +16,6 @@ namespace LibraCore.LevelBuilding
         public string TextureName { get; set; }
 
         public AnimationDescriptor AnimationDescriptor { get; set; }
+        public MovementDescriptor MovementDescriptor { get; set; }
     }
 }

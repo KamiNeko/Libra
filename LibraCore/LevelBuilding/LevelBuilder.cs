@@ -121,6 +121,15 @@ namespace LibraCore.LevelBuilding
                 entity.addComponent(sprite);
             }
 
+            if (entityDescriptor.MovementDescriptor.Active)
+            {
+                entity.addComponent(new ScriptedMovementComponent()
+                {
+                    SpeedInPixelsPerSecond = entityDescriptor.MovementDescriptor.Speed,
+                    Paths = entityDescriptor.MovementDescriptor.Positions
+                });
+            }
+
             entity.transform.setPosition(entityDescriptor.Position);
 
             return entity;

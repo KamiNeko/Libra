@@ -22,7 +22,6 @@ namespace LibraCore.Scenes
         public override void Initialize()
         {
             base.Initialize();
-
             CreateEntitySystems();
 
             CreateLevelDescriptors();
@@ -39,7 +38,8 @@ namespace LibraCore.Scenes
             AddEntityProcessor(new PlayerControllerSystem());
             AddEntityProcessor(new BulletSystem());
             AddEntityProcessor(new BulletControllerSystem());
-            AddEntityProcessor(new EntityOutOfLevelBoundsTesterSystem());            
+            AddEntityProcessor(new EntityOutOfLevelBoundsTesterSystem());
+            AddEntityProcessor(new ScriptedMovementSystem());
         }
 
         public override void Update()
@@ -127,6 +127,7 @@ namespace LibraCore.Scenes
         {
             EntityProcessors.getProcessor<BulletSystem>().Reset();
             EntityProcessors.getProcessor<BulletControllerSystem>().Reset();
+            EntityProcessors.getProcessor<ScriptedMovementSystem>().Reset();
             FreezePlayerControlForSmallDuration();
 
             var currentLevelDescriptor = GetCurrentLevelDescriptor();
@@ -140,7 +141,7 @@ namespace LibraCore.Scenes
         {
             EntityProcessors.getProcessor<PlayerControllerSystem>().Freeze(TimeSpan.FromMilliseconds(1000));
         }
-        
+
         private void CreateLevelDescriptors()
         {
             foreach (var levelName in LoadLevelNames().OrderBy(x => x))
@@ -247,7 +248,7 @@ namespace LibraCore.Scenes
         private const string RemainingLifesTextEntityName = "remaining-lifes-text";
 
         private SoundEffect explosionSoundEffect;
-        
+
         private readonly ICollection<LevelDescriptor> levelDescriptors = new List<LevelDescriptor>();
     }
 }
