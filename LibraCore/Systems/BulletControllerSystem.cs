@@ -1,4 +1,5 @@
 ﻿using LibraCore.Components;
+using LibraCore.Components.Utility;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Nez;
@@ -59,8 +60,8 @@ namespace LibraCore.Systems
                     Direction = bulletControllerComponent.Direction,
                     BulletShootingEntity = bulletShootingEntity
                 });
-                bulletEntity.addComponent(new PerPixelCollisionComponent(sprite));
-                bulletEntity.addComponent(new CollisionTesterComponent());
+                bulletEntity.addComponent(new BitPixelFieldComponent(new AnimatedSpriteWrapperFactory().Create(sprite)));
+                bulletEntity.addComponent(new CollisionCheckComponent());
                 bulletEntity.addComponent(new EntityOutOfLevelBoundsTesterComponent());
                 bulletEntity.addComponent(sprite);
 

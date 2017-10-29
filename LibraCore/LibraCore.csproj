@@ -58,13 +58,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\AnimatedPerPixelCollisionComponent.cs" />
+    <Compile Include="Components\BitPixelFieldComponent.cs" />
     <Compile Include="Components\BulletComponent.cs" />
     <Compile Include="Components\BulletControllerComponent.cs" />
-    <Compile Include="Components\CollisionTesterComponent.cs" />
+    <Compile Include="Components\CollisionCheckComponent.cs" />
     <Compile Include="Components\EntityOutOfLevelBoundsTesterComponent.cs" />
-    <Compile Include="Components\PerPixelCollisionComponent.cs" />
     <Compile Include="Components\PlayerControllerComponent.cs" />
+    <Compile Include="Components\Utility\AnimatedSpriteWrapper.cs" />
+    <Compile Include="Components\Utility\AnimatedSpriteWrapperFactory.cs" />
+    <Compile Include="Components\Utility\IAnimatedSprite.cs" />
+    <Compile Include="Components\Utility\StaticSpriteWrapper.cs" />
     <Compile Include="LevelBuilding\AnimationDescriptor.cs" />
     <Compile Include="LevelBuilding\EntityDescriptor.cs" />
     <Compile Include="LevelBuilding\LevelConstants.cs" />
@@ -76,9 +79,11 @@
     <Compile Include="Scenes\BaseScene.cs" />
     <Compile Include="Scenes\LevelScene.cs" />
     <Compile Include="Scenes\TitleScreen.cs" />
+    <Compile Include="Systems\CollisionCheckSystem.cs" />
     <Compile Include="Systems\BulletControllerSystem.cs" />
     <Compile Include="Systems\BulletSystem.cs" />
     <Compile Include="Systems\EntityOutOfLevelBoundsTesterSystem.cs" />
+    <Compile Include="Systems\BitPixelFieldSystem.cs" />
     <Compile Include="Systems\PlayerControllerSystem.cs" />
   </ItemGroup>
   <ItemGroup>

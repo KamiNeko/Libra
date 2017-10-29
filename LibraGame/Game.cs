@@ -2,7 +2,7 @@
 using Nez;
 using System;
 
-namespace LibraCore
+namespace LibraGame
 {
     public class Game : Core
     {

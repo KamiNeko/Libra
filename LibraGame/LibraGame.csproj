@@ -9,8 +9,8 @@
     <ProjectGuid>{9A7AEA71-3CB0-4D03-87CD-BCD4395CBB28}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MonoGameTests</RootNamespace>
-    <AssemblyName>MonoGameTests</AssemblyName>
+    <RootNamespace>LibraGame</RootNamespace>
+    <AssemblyName>LibraGame</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>DesktopGL</MonoGamePlatform>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>

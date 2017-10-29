@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LibraCore
+namespace LibraGame
 {
     public static class Program
     {

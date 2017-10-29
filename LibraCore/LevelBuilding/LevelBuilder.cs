@@ -7,6 +7,7 @@ using Nez.Systems;
 using Nez.Textures;
 using System;
 using System.Collections.Generic;
+using LibraCore.Components.Utility;
 
 namespace LibraCore.LevelBuilding
 {
@@ -41,8 +42,8 @@ namespace LibraCore.LevelBuilding
             entity.addComponent(sprite);
             entity.addComponent(BuildSpaceshipDriveSprite());
             entity.addComponent(new PlayerControllerComponent());
-            entity.addComponent(new PerPixelCollisionComponent(sprite));
-            entity.addComponent(new CollisionTesterComponent());
+            entity.addComponent(new BitPixelFieldComponent(new AnimatedSpriteWrapperFactory().Create(sprite)));
+            entity.addComponent(new CollisionCheckComponent());
             entity.addComponent(new EntityOutOfLevelBoundsTesterComponent());
             entity.addComponent(new BulletControllerComponent()
             {
@@ -102,7 +103,7 @@ namespace LibraCore.LevelBuilding
 
                 if (entityDescriptor.IsCollidable)
                 {
-                    entity.addComponent(new AnimatedPerPixelCollisionComponent<int>(animatedSprite));
+                    entity.addComponent(new BitPixelFieldComponent(new AnimatedSpriteWrapperFactory().Create(animatedSprite)));
                 }
 
                 entity.addComponent(animatedSprite);
@@ -114,7 +115,7 @@ namespace LibraCore.LevelBuilding
 
                 if (entityDescriptor.IsCollidable)
                 {
-                    entity.addComponent(new PerPixelCollisionComponent(sprite));
+                    entity.addComponent(new BitPixelFieldComponent(new AnimatedSpriteWrapperFactory().Create(sprite)));
                 }
 
                 entity.addComponent(sprite);

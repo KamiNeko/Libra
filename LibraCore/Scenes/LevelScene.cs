@@ -33,10 +33,13 @@ namespace LibraCore.Scenes
 
         private void CreateEntitySystems()
         {
+            // NOTE: The order of initialization is also the order in the update cycle
+            AddEntityProcessor(new BitPixelFieldSystem());
+            AddEntityProcessor(new CollisionCheckSystem());
             AddEntityProcessor(new PlayerControllerSystem());
             AddEntityProcessor(new BulletSystem());
             AddEntityProcessor(new BulletControllerSystem());
-            AddEntityProcessor(new EntityOutOfLevelBoundsTesterSystem());
+            AddEntityProcessor(new EntityOutOfLevelBoundsTesterSystem());            
         }
 
         public override void Update()
@@ -120,7 +123,7 @@ namespace LibraCore.Scenes
         private bool ShipHasCollisions()
         {
             var entity = Entities.findEntity("space-ship");
-            var component = entity.getComponent<CollisionTesterComponent>();
+            var component = entity.getComponent<CollisionCheckComponent>();
 
             return component.HasCollisions;
         }
