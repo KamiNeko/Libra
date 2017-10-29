@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using Microsoft.Xna.Framework.Audio;
+using LibraCore.Systems;
 
 namespace LibraCore.Scenes
 {
@@ -21,6 +22,8 @@ namespace LibraCore.Scenes
         public override void Initialize()
         {
             base.Initialize();
+
+            AddEntityProcessor(new PlayerMovementSystem());
 
             CreateLevelDescriptors();
             SwitchToNextLevel();

@@ -23,7 +23,7 @@ namespace LibraCore.LevelBuilding
             var entites = new List<Entity>();
 
             entites.Add(BuildSpaceshipEntity());
-            
+
             foreach (var entityDescriptor in levelDescriptor.EntityDescriptors)
             {
                 entites.Add(BuildEntity(entityDescriptor));
@@ -44,7 +44,11 @@ namespace LibraCore.LevelBuilding
             entity.addComponent(new PerPixelCollisionComponent(sprite));
             entity.addComponent(new CollisionTesterComponent());
             entity.addComponent(new EntityBoundsOutOfScreenTesterComponent());
-            entity.addComponent(new BulletControllerComponent());
+            entity.addComponent(new BulletControllerComponent()
+            {
+                Direction = new Vector2(0f, 1f),
+                Offset = new Vector2(0, 32f)
+            });
 
             entity.transform.setPosition(levelDescriptor.StartPosition);
             return entity;

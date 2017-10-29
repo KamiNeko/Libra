@@ -76,6 +76,7 @@
     <Compile Include="Scenes\BaseScene.cs" />
     <Compile Include="Scenes\LevelScene.cs" />
     <Compile Include="Scenes\TitleScreen.cs" />
+    <Compile Include="Systems\PlayerMovementSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

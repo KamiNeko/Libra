@@ -6,7 +6,7 @@ namespace LibraCore
 {
     public class Game : Core
     {
-        public Game() : base(width: 1280, height: 960, isFullScreen: false, enableEntitySystems: false)
+        public Game() : base(width: 1280, height: 960, isFullScreen: false, enableEntitySystems: true)
         {
         }
 

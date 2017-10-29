@@ -9,12 +9,16 @@ namespace LibraCore.Components
 {
     public class BulletControllerComponent : Component
     {
+        public bool ShouldCreateBullet { get => requestedToCreateBullet; set => requestedToCreateBullet = value; }
+        public Vector2 Direction { get => direction; set => direction = value; }
+        public Vector2 Offset { get => offset; set => offset = value; }
+
         public override void OnAddedToEntity()
         {
             shootSoundEffect = Entity.scene.ContentManager.Load<SoundEffect>("shoot");
         }
 
-        public void TryToCreateBullet(Vector2 direction, Vector2 offset)
+        private void TryToCreateBullet()
         {
             var bulletEntity = TryToFindBulletEntity();
             var timeDifferenceToLastShoot = DateTime.Now - lastBulletShootTimestamp;
@@ -57,5 +61,9 @@ namespace LibraCore.Components
 
         private SoundEffect shootSoundEffect;
         private DateTime lastBulletShootTimestamp;
+
+        private bool requestedToCreateBullet;
+        private Vector2 direction;
+        private Vector2 offset;
     }
 }
