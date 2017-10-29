@@ -5,6 +5,7 @@ The Libra project is inspired by the C64 game Libra - you can find material abou
 * Windows (MonoGame supports multiple OS, but I only test on this one, so there is no guarantee it will work on Mac oder Linux)
 * MonoGame 3.5.1
 * Visual Studio 2017
+* OpenAL (download [here](https://www.openal.org/downloads/))
 * [Aseprite](https://github.com/aseprite/aseprite), if you want to open / edit the sprite files
 
 ## Build
