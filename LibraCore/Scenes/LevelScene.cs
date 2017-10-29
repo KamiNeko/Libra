@@ -68,17 +68,17 @@ namespace LibraCore.Scenes
                     spaceshipEntity.getComponent<Sprite>().Color = Color.White;
                 }
 
-                var bulletComponents = Entities.findComponentsOfType<BulletComponent>();
-                foreach (var bulletComponent in bulletComponents)
-                {
-                    var entity = bulletComponent.Entity;
+                //var bulletComponents = Entities.findComponentsOfType<BulletComponent>();
+                //foreach (var bulletComponent in bulletComponents)
+                //{
+                //    var entity = bulletComponent.Entity;
 
-                    if (entity.getComponent<CollisionTesterComponent>().HasCollisions ||
-                        entity.getComponent<EntityBoundsOutOfScreenTesterComponent>().EntityBoundsOutOfScreen)
-                    {
-                        entity.detachFromScene();
-                    }
-                }
+                //    if (entity.getComponent<CollisionTesterComponent>().HasCollisions ||
+                //        entity.getComponent<EntityBoundsOutOfScreenTesterComponent>().EntityBoundsOutOfScreen)
+                //    {
+                //        entity.detachFromScene();
+                //    }
+                //}
             }
         }
         
@@ -113,12 +113,8 @@ namespace LibraCore.Scenes
 
         private void ResetLevel()
         {
-            var bulletComponents = Entities.findComponentsOfType<BulletComponent>();
-            foreach (var bulletComponent in bulletComponents)
-            {
-                var entity = bulletComponent.Entity;
-                entity.detachFromScene();
-            }
+            EntityProcessors.getProcessor<BulletSystem>().Reset();
+            EntityProcessors.getProcessor<BulletControllerSystem>().Reset();
 
             var currentLevelDescriptor = GetCurrentLevelDescriptor();
             var spaceshipEntity = Entities.findEntity(LevelConstants.SpaceshipEntiyName);

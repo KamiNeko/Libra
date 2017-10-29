@@ -4,10 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Nez;
 using Nez.Sprites;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraCore.Systems
 {
@@ -23,6 +19,18 @@ namespace LibraCore.Systems
             shootSoundEffect = scene.ContentManager.Load<SoundEffect>("shoot");
         }
 
+        public void Reset()
+        {
+            var iterationSafeEntitesCopy = _entities.ToArray();
+
+            foreach (var bulletControllerEntity in iterationSafeEntitesCopy)
+            {
+                var bulletControllerComponent = bulletControllerEntity.getComponent<BulletControllerComponent>();
+                bulletControllerComponent.Bullet = null;
+                bulletControllerComponent.LastBulletShootTimestamp = DateTime.MinValue;
+            }
+        }
+
         public override void process(Entity entity)
         {
             var bulletControllerComponent = entity.getComponent<BulletControllerComponent>();
@@ -36,7 +44,7 @@ namespace LibraCore.Systems
 
         private void TryToCreateBullet(Entity bulletShootingEntity, BulletControllerComponent bulletControllerComponent)
         {
-            var bulletEntity = TryToFindBulletEntity(bulletShootingEntity);
+            var bulletEntity = bulletControllerComponent.Bullet;// TryToFindBulletEntity(bulletShootingEntity);
             var timeDifferenceToLastShoot = DateTime.Now - bulletControllerComponent.LastBulletShootTimestamp;
 
             if (bulletEntity == null && timeDifferenceToLastShoot > bulletControllerComponent.BulletCooldown)
@@ -48,7 +56,8 @@ namespace LibraCore.Systems
                 bulletEntity.addComponent(new BulletComponent()
                 {
                     Speed = 100f,
-                    Direction = bulletControllerComponent.Direction
+                    Direction = bulletControllerComponent.Direction,
+                    BulletShootingEntity = bulletShootingEntity
                 });
                 bulletEntity.addComponent(new PerPixelCollisionComponent(sprite));
                 bulletEntity.addComponent(new CollisionTesterComponent());
@@ -60,6 +69,7 @@ namespace LibraCore.Systems
                 shootSoundEffect.CreateInstance().Play();
 
                 bulletControllerComponent.LastBulletShootTimestamp = DateTime.Now;
+                bulletControllerComponent.Bullet = bulletEntity;
             }
         }
 

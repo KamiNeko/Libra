@@ -7,5 +7,6 @@ namespace LibraCore.Components
     {
         public float Speed { get; set; }
         public Vector2 Direction { get; set; }
+        public Entity BulletShootingEntity { get; set; }
     }
 }
