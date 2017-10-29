@@ -23,14 +23,20 @@ namespace LibraCore.Scenes
         {
             base.Initialize();
 
-            AddEntityProcessor(new PlayerControllerSystem());
-            AddEntityProcessor(new BulletSystem());
-            AddEntityProcessor(new BulletControllerSystem());
+            CreateEntitySystems();
 
             CreateLevelDescriptors();
             SwitchToNextLevel();
             CreateRemainingLifesText();
             explosionSoundEffect = ContentManager.Load<SoundEffect>("explosion");
+        }
+
+        private void CreateEntitySystems()
+        {
+            AddEntityProcessor(new PlayerControllerSystem());
+            AddEntityProcessor(new BulletSystem());
+            AddEntityProcessor(new BulletControllerSystem());
+            AddEntityProcessor(new EntityOutOfLevelBoundsTesterSystem());
         }
 
         public override void Update()
@@ -122,8 +128,8 @@ namespace LibraCore.Scenes
         private bool ShipLeftLevel()
         {
             var entity = Entities.findEntity("space-ship");
-            var component = entity.getComponent<EntityBoundsOutOfScreenTesterComponent>();
-            return component.EntityBoundsOutOfScreen;
+            var component = entity.getComponent<EntityOutOfLevelBoundsTesterComponent>();
+            return component.OutOfBounds;
         }
 
         private void CreateLevelDescriptors()

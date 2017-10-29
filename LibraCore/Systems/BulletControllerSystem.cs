@@ -61,7 +61,7 @@ namespace LibraCore.Systems
                 });
                 bulletEntity.addComponent(new PerPixelCollisionComponent(sprite));
                 bulletEntity.addComponent(new CollisionTesterComponent());
-                bulletEntity.addComponent(new EntityBoundsOutOfScreenTesterComponent());
+                bulletEntity.addComponent(new EntityOutOfLevelBoundsTesterComponent());
                 bulletEntity.addComponent(sprite);
 
                 bulletEntity.transform.setPosition(bulletShootingEntity.position + bulletControllerComponent.Offset);

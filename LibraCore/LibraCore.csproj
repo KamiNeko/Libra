@@ -62,7 +62,7 @@
     <Compile Include="Components\BulletComponent.cs" />
     <Compile Include="Components\BulletControllerComponent.cs" />
     <Compile Include="Components\CollisionTesterComponent.cs" />
-    <Compile Include="Components\EntityBoundsOutOfScreenTesterComponent.cs" />
+    <Compile Include="Components\EntityOutOfLevelBoundsTesterComponent.cs" />
     <Compile Include="Components\PerPixelCollisionComponent.cs" />
     <Compile Include="Components\PlayerControllerComponent.cs" />
     <Compile Include="LevelBuilding\AnimationDescriptor.cs" />
@@ -78,6 +78,7 @@
     <Compile Include="Scenes\TitleScreen.cs" />
     <Compile Include="Systems\BulletControllerSystem.cs" />
     <Compile Include="Systems\BulletSystem.cs" />
+    <Compile Include="Systems\EntityOutOfLevelBoundsTesterSystem.cs" />
     <Compile Include="Systems\PlayerControllerSystem.cs" />
   </ItemGroup>
   <ItemGroup>

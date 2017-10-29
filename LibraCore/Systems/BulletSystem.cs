@@ -8,7 +8,7 @@ namespace LibraCore.Systems
         public BulletSystem() : base(new Matcher().all(
             typeof(BulletComponent),
             typeof(CollisionTesterComponent),
-            typeof(EntityBoundsOutOfScreenTesterComponent)))
+            typeof(EntityOutOfLevelBoundsTesterComponent)))
         {
         }
 
@@ -28,9 +28,9 @@ namespace LibraCore.Systems
             entity.position += bulletComponent.Direction * bulletComponent.Speed * Time.deltaTime;
 
             var collisionTesterComponent = entity.getComponent<CollisionTesterComponent>();
-            var entityBoundsOutOfScreenTesterComponent = entity.getComponent<EntityBoundsOutOfScreenTesterComponent>();
+            var entityBoundsOutOfScreenTesterComponent = entity.getComponent<EntityOutOfLevelBoundsTesterComponent>();
 
-            if (collisionTesterComponent.HasCollisions || entityBoundsOutOfScreenTesterComponent.EntityBoundsOutOfScreen)
+            if (collisionTesterComponent.HasCollisions || entityBoundsOutOfScreenTesterComponent.OutOfBounds)
             {
                 var bulletShootingEntity = bulletComponent.BulletShootingEntity;
                 var bulletControllerComponent = bulletShootingEntity.getComponent<BulletControllerComponent>();

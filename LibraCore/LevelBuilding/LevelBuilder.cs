@@ -43,7 +43,7 @@ namespace LibraCore.LevelBuilding
             entity.addComponent(new PlayerControllerComponent());
             entity.addComponent(new PerPixelCollisionComponent(sprite));
             entity.addComponent(new CollisionTesterComponent());
-            entity.addComponent(new EntityBoundsOutOfScreenTesterComponent());
+            entity.addComponent(new EntityOutOfLevelBoundsTesterComponent());
             entity.addComponent(new BulletControllerComponent()
             {
                 Direction = new Vector2(0f, 1f),
