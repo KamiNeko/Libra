@@ -44,18 +44,18 @@ namespace LibraCore.Systems
 
         private void TryToCreateBullet(Entity bulletShootingEntity, BulletControllerComponent bulletControllerComponent)
         {
-            var bulletEntity = bulletControllerComponent.Bullet;// TryToFindBulletEntity(bulletShootingEntity);
+            var bulletEntity = bulletControllerComponent.Bullet;
             var timeDifferenceToLastShoot = DateTime.Now - bulletControllerComponent.LastBulletShootTimestamp;
 
             if (bulletEntity == null && timeDifferenceToLastShoot > bulletControllerComponent.BulletCooldown)
             {
-                bulletEntity = scene.CreateEntity(GetBulletEntityName(bulletShootingEntity));
+                bulletEntity = scene.CreateEntity(CreateBulletEntityName(bulletShootingEntity));
                 var sprite = new Sprite(scene.ContentManager.Load<Texture2D>("bullet"));
                 sprite.SetRenderLayer(200);
 
                 bulletEntity.addComponent(new BulletComponent()
                 {
-                    Speed = 100f,
+                    Speed = bulletControllerComponent.Speed,
                     Direction = bulletControllerComponent.Direction,
                     BulletShootingEntity = bulletShootingEntity
                 });
@@ -72,19 +72,11 @@ namespace LibraCore.Systems
                 bulletControllerComponent.Bullet = bulletEntity;
             }
         }
-
-        private Entity TryToFindBulletEntity(Entity bulletShootingEntity)
-        {
-            var sceneEntites = scene.Entities;
-            var bulletEntity = sceneEntites.findEntity(GetBulletEntityName(bulletShootingEntity));
-
-            return bulletEntity;
-        }
-
-        private string GetBulletEntityName(Entity bulletShootingEntity)
+        
+        private string CreateBulletEntityName(Entity bulletShootingEntity)
         {
             var entityName = bulletShootingEntity.name;
-            var bulletEntityName = $"{bulletShootingEntity}-bullet";
+            var bulletEntityName = $"{entityName}-bullet";
 
             return bulletEntityName;
         }

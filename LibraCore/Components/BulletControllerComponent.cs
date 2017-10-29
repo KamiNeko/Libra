@@ -8,6 +8,7 @@ namespace LibraCore.Components
     {
         public bool ShouldCreateBullet { get; set; }
 
+        public float Speed { get; set; }
         public Vector2 Direction { get; set; }
         public Vector2 Offset { get; set; }
 

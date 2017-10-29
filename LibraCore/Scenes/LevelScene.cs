@@ -67,18 +67,6 @@ namespace LibraCore.Scenes
                 {
                     spaceshipEntity.getComponent<Sprite>().Color = Color.White;
                 }
-
-                //var bulletComponents = Entities.findComponentsOfType<BulletComponent>();
-                //foreach (var bulletComponent in bulletComponents)
-                //{
-                //    var entity = bulletComponent.Entity;
-
-                //    if (entity.getComponent<CollisionTesterComponent>().HasCollisions ||
-                //        entity.getComponent<EntityBoundsOutOfScreenTesterComponent>().EntityBoundsOutOfScreen)
-                //    {
-                //        entity.detachFromScene();
-                //    }
-                //}
             }
         }
         
