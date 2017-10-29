@@ -1,6 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Nez;
-using System;
+﻿using Nez;
 
 namespace LibraCore.Components
 {

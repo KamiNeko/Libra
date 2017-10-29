@@ -49,7 +49,7 @@ namespace LibraCore.LevelBuilding
             {
                 Direction = new Vector2(0f, 1f),
                 Offset = new Vector2(0, 32f),
-                Speed = 200f
+                Speed = 50f
             });
 
             entity.transform.setPosition(levelDescriptor.StartPosition);

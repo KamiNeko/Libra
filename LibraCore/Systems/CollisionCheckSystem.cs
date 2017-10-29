@@ -29,13 +29,6 @@ namespace LibraCore.Systems
                     if (HasCollisionWith(bitPixelFieldComponent, otherBitPixelFieldComponent))
                     {
                         collisionsFound = true;
-
-                        // NOTE: Due to random order in the update method, we make sure to update the counterpart of the collision
-                        //  so that we have consistency in collision detection, if we check the other component
-                        if (otherBitPixelFieldComponent.Entity.getComponent<CollisionCheckComponent>() != null)
-                        {
-                            otherBitPixelFieldComponent.Entity.getComponent<CollisionCheckComponent>().HasCollisions = true;
-                        }
                     }
                 }
             }
@@ -46,11 +39,6 @@ namespace LibraCore.Systems
 
         private bool HasCollisionWith(BitPixelFieldComponent first, BitPixelFieldComponent second)
         {
-            if (first.PixelField == null || second.PixelField == null)
-            {
-                return false;
-            }
-
             var firstBounds = first.AnimatedSpriteBounds;
             var secondBounds = second.AnimatedSpriteBounds;
 
