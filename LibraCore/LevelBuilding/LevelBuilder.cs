@@ -8,6 +8,7 @@ using Nez.Textures;
 using System;
 using System.Collections.Generic;
 using LibraCore.Components.Utility;
+using Microsoft.Xna.Framework.Audio;
 
 namespace LibraCore.LevelBuilding
 {
@@ -99,12 +100,13 @@ namespace LibraCore.LevelBuilding
                 };
 
                 animatedSprite.AddAnimation(0, animation);
-                animatedSprite.Play(0);
 
                 if (entityDescriptor.IsCollidable)
                 {
                     entity.addComponent(new BitPixelFieldComponent(new AnimatedSpriteWrapperFactory().Create(animatedSprite)));
                 }
+
+                animatedSprite.Play(0);
 
                 entity.addComponent(animatedSprite);
             }
