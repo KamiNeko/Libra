@@ -6,9 +6,9 @@ using System;
 
 namespace LibraCore.Systems
 {
-    public class PlayerMovementSystem : EntityProcessingSystem
+    public class PlayerControllerSystem : EntityProcessingSystem
     {
-        public PlayerMovementSystem() : 
+        public PlayerControllerSystem() : 
             base(new Matcher().all(typeof(PlayerControllerComponent), typeof(BulletControllerComponent)))
         {
         }

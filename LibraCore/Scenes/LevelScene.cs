@@ -23,7 +23,9 @@ namespace LibraCore.Scenes
         {
             base.Initialize();
 
-            AddEntityProcessor(new PlayerMovementSystem());
+            AddEntityProcessor(new PlayerControllerSystem());
+            AddEntityProcessor(new BulletSystem());
+            AddEntityProcessor(new BulletControllerSystem());
 
             CreateLevelDescriptors();
             SwitchToNextLevel();

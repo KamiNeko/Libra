@@ -1,18 +1,9 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
-using Nez;
+﻿using Nez;
 
 namespace LibraCore.Components
 {
-    public class PlayerControllerComponent : Component, IUpdatable
+    public class PlayerControllerComponent : Component
     {
-        public float Speed { get => speed; set => speed = value; }
-
-        public void update()
-        {
-            
-        }
-
-        private float speed = 100f;
+        public float Speed { get; set; } = 100f;
     }
 }
