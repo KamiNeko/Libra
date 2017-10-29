@@ -2,16 +2,14 @@
 using Microsoft.Xna.Framework;
 using Nez;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraCore.Systems
 {
     public class CollisionCheckSystem : EntityProcessingSystem
     {
-        public CollisionCheckSystem() : base(new Matcher().all(typeof(BitPixelFieldComponent), typeof(CollisionCheckComponent)))
+        public CollisionCheckSystem() : base(new Matcher().all(
+            typeof(BitPixelFieldComponent), 
+            typeof(CollisionCheckComponent)))
         {
         }
 

@@ -6,8 +6,9 @@ namespace LibraCore.Systems
 {
     public class EntityOutOfLevelBoundsTesterSystem : EntityProcessingSystem
     {
-        public EntityOutOfLevelBoundsTesterSystem() 
-            : base(new Matcher().all(typeof(EntityOutOfLevelBoundsTesterComponent), typeof(Sprite)))
+        public EntityOutOfLevelBoundsTesterSystem() : base(new Matcher().all(
+                typeof(EntityOutOfLevelBoundsTesterComponent),
+                typeof(Sprite)))
         {
         }
 

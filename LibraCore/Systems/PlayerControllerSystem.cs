@@ -8,8 +8,9 @@ namespace LibraCore.Systems
 {
     public class PlayerControllerSystem : EntityProcessingSystem
     {
-        public PlayerControllerSystem() : 
-            base(new Matcher().all(typeof(PlayerControllerComponent), typeof(BulletControllerComponent)))
+        public PlayerControllerSystem() : base(new Matcher().all
+                (typeof(PlayerControllerComponent),
+                typeof(BulletControllerComponent)))
         {
         }
 
