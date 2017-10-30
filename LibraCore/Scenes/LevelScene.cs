@@ -192,10 +192,12 @@ namespace LibraCore.Scenes
             var currentLevelDescriptor = GetCurrentLevelDescriptor();
             var levelLoader = new LevelBuilder(ContentManager, currentLevelDescriptor);
             var entites = levelLoader.BuildEntites();
+            currentLevelEntities.Clear();
 
             foreach (var entity in entites)
             {
                 AddEntity(entity);
+                currentLevelEntities.Add(entity);
             }
         }
 
@@ -230,8 +232,13 @@ namespace LibraCore.Scenes
 
         private void UnloadAllEntites()
         {
-            // TODO: Test this, I think it will also throw out stuff we need (such as camera)
-            Entities.removeAllEntities();
+            foreach (var entity in currentLevelEntities)
+            {
+                if (Entities.contains(entity))
+                {
+                    entity.detachFromScene();
+                }
+            }
         }
 
         private LevelDescriptor GetCurrentLevelDescriptor()
@@ -250,6 +257,7 @@ namespace LibraCore.Scenes
 
         private SoundEffect explosionSoundEffect;
 
+        private readonly ICollection<Entity> currentLevelEntities = new List<Entity>();
         private readonly ICollection<LevelDescriptor> levelDescriptors = new List<LevelDescriptor>();
     }
 }
