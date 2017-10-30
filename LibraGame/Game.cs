@@ -40,7 +40,7 @@ namespace LibraGame
                 var titleScreen = sender as TitleScreen;
                 titleScreen.TitleScreenSkipped -= OnTitleScreenSkipped;
 
-                var levelScene = new LevelScene() { LevelEditorModeActive = true };
+                var levelScene = new LevelScene() { LevelEditorModeActive = false };
                 levelScene.GameWon += OnGameWon;
                 levelScene.GameOver += OnGameOver;
 

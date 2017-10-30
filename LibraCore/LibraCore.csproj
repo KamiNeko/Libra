@@ -63,6 +63,7 @@
     <Compile Include="Components\BulletControllerComponent.cs" />
     <Compile Include="Components\CollisionCheckComponent.cs" />
     <Compile Include="Components\EntityOutOfLevelBoundsTesterComponent.cs" />
+    <Compile Include="Components\LightningComponent.cs" />
     <Compile Include="Components\PlayerControllerComponent.cs" />
     <Compile Include="Components\ScriptedMovementComponent.cs" />
     <Compile Include="Components\Utility\AnimatedSpriteWrapper.cs" />
@@ -70,12 +71,15 @@
     <Compile Include="Components\Utility\IAnimatedSprite.cs" />
     <Compile Include="Components\Utility\StaticSpriteWrapper.cs" />
     <Compile Include="LevelBuilding\AnimationDescriptor.cs" />
+    <Compile Include="LevelBuilding\AnimationFrameSetDescriptor.cs" />
+    <Compile Include="LevelBuilding\AnimationLoopDescriptor.cs" />
     <Compile Include="LevelBuilding\EntityDescriptor.cs" />
     <Compile Include="LevelBuilding\LevelConstants.cs" />
     <Compile Include="LevelBuilding\LevelDescriptor.cs" />
     <Compile Include="LevelBuilding\LevelBuilder.cs" />
     <Compile Include="LevelBuilding\LevelDescriptorReader.cs" />
     <Compile Include="LevelBuilding\LevelDescriptorWriter.cs" />
+    <Compile Include="LevelBuilding\LightningDescriptor.cs" />
     <Compile Include="LevelBuilding\MovementDescriptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenes\BaseScene.cs" />
@@ -86,6 +90,7 @@
     <Compile Include="Systems\BulletSystem.cs" />
     <Compile Include="Systems\EntityOutOfLevelBoundsTesterSystem.cs" />
     <Compile Include="Systems\BitPixelFieldSystem.cs" />
+    <Compile Include="Systems\LightningSystem.cs" />
     <Compile Include="Systems\PlayerControllerSystem.cs" />
     <Compile Include="Systems\ScriptedMovementSystem.cs" />
   </ItemGroup>

@@ -8,6 +8,7 @@ using Nez.Textures;
 using System;
 using System.Collections.Generic;
 using LibraCore.Components.Utility;
+using System.Linq;
 
 namespace LibraCore.LevelBuilding
 {
@@ -87,30 +88,55 @@ namespace LibraCore.LevelBuilding
                 entity.addComponent(new PlayerControllerComponent());
             }
 
+            if (entityDescriptor.LightningDescriptor.Active)
+            {
+                entity.addComponent(new LightningComponent()
+                {
+                    SoundEffectName = entityDescriptor.LightningDescriptor.SoundEffectName,
+                    TimeInvisible = entityDescriptor.LightningDescriptor.TimeInvisible
+                });
+            }
+
             if (entityDescriptor.AnimationDescriptor.Active)
             {
                 var texture = contentManager.Load<Texture2D>(entityDescriptor.TextureName);
                 var subtextures = Subtexture.subtexturesFromAtlas(texture, entityDescriptor.AnimationDescriptor.SubtextureWidth, entityDescriptor.AnimationDescriptor.SubtextureHeight);
 
-                var animationStartFrame = entityDescriptor.AnimationDescriptor.StartAnimationFrame;
-                var animationCountFrames = (entityDescriptor.AnimationDescriptor.StopAnimationFrame - entityDescriptor.AnimationDescriptor.StartAnimationFrame);
-
                 var animatedSprite = new Sprite<int>(subtextures[0]);
                 animatedSprite.SetRenderLayer(200);
 
-                var animation = new SpriteAnimation(new List<Subtexture>(subtextures.GetRange(animationStartFrame, animationCountFrames)))
+                foreach (var animationFrameSet in entityDescriptor.AnimationDescriptor.AnimationFrameSets)
                 {
-                    fps = entityDescriptor.AnimationDescriptor.AnimationFramesPerSecond
-                };
+                    var animationFrames = new List<Subtexture>();
 
-                animatedSprite.AddAnimation(0, animation);
+                    foreach (var frameIndex in animationFrameSet.Frames)
+                    {
+                        animationFrames.Add(subtextures.ElementAt(frameIndex));
+                    }
+
+                    var animation = new SpriteAnimation(animationFrames)
+                    {
+                        fps = entityDescriptor.AnimationDescriptor.AnimationFramesPerSecond,
+                        loop = false
+                    };
+
+                    if (entityDescriptor.AnimationLoopDescriptor.Active && entityDescriptor.AnimationLoopDescriptor.Key == animationFrameSet.Key)
+                    {
+                        animation.loop = true;
+                    }
+
+                    animatedSprite.AddAnimation(animationFrameSet.Key, animation);
+                }
 
                 if (entityDescriptor.IsCollidable)
                 {
                     entity.addComponent(new BitPixelFieldComponent(new AnimatedSpriteWrapperFactory().Create(animatedSprite)));
                 }
 
-                animatedSprite.Play(0);
+                if (entityDescriptor.AnimationLoopDescriptor.Active)
+                {
+                    animatedSprite.Play(entityDescriptor.AnimationLoopDescriptor.Key);
+                }
 
                 entity.addComponent(animatedSprite);
             }
