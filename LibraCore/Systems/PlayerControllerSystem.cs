@@ -9,8 +9,7 @@ namespace LibraCore.Systems
     public class PlayerControllerSystem : EntityProcessingSystem
     {
         public PlayerControllerSystem() : base(new Matcher().all
-                (typeof(PlayerControllerComponent),
-                typeof(BulletControllerComponent)))
+                (typeof(PlayerControllerComponent)))
         {
         }
 
@@ -61,7 +60,11 @@ namespace LibraCore.Systems
             if (Input.isKeyDown(Keys.Space))
             {
                 var bulletControllerComponent = entity.getComponent<BulletControllerComponent>();
-                bulletControllerComponent.ShouldCreateBullet = true;
+
+                if (bulletControllerComponent != null)
+                {
+                    bulletControllerComponent.ShouldCreateBullet = true;
+                }
             }
 
             var playerControllerComponent = entity.getComponent<PlayerControllerComponent>();

@@ -8,7 +8,6 @@ using Nez.Textures;
 using System;
 using System.Collections.Generic;
 using LibraCore.Components.Utility;
-using Microsoft.Xna.Framework.Audio;
 
 namespace LibraCore.LevelBuilding
 {
@@ -82,6 +81,11 @@ namespace LibraCore.LevelBuilding
         private Entity BuildEntity(EntityDescriptor entityDescriptor)
         {
             var entity = new Entity(entityDescriptor.EntityName);
+
+            if (entityDescriptor.LevelEditorMovable)
+            {
+                entity.addComponent(new PlayerControllerComponent());
+            }
 
             if (entityDescriptor.AnimationDescriptor.Active)
             {

@@ -7,12 +7,7 @@
       "IsCollidable": true,
       "TextureName": "level01",
       "AnimationDescriptor": {
-        "Active": false,
-        "StartAnimationFrame": 0,
-        "StopAnimationFrame": 0,
-        "AnimationFramesPerSecond": 0,
-        "SubtextureWidth": 0,
-        "SubtextureHeight": 0
+        "Active": false
       }
     },
     {

@@ -7,6 +7,7 @@ namespace LibraCore.LevelBuilding
         public EntityDescriptor()
         {
             AnimationDescriptor = new AnimationDescriptor { Active = false };
+            MovementDescriptor = new MovementDescriptor { Active = false };
         }
 
         public string EntityName { get; set; }
@@ -14,6 +15,7 @@ namespace LibraCore.LevelBuilding
 
         public bool IsCollidable { get; set; }
         public string TextureName { get; set; }
+        public bool LevelEditorMovable { get; set; }
 
         public AnimationDescriptor AnimationDescriptor { get; set; }
         public MovementDescriptor MovementDescriptor { get; set; }
