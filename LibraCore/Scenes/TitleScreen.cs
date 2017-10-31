@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Nez;
 using Nez.Sprites;
@@ -10,7 +9,7 @@ namespace LibraCore.Scenes
 {
     public class TitleScreen : BaseScene
     {
-        public EventHandler TitleScreenSkipped;
+        public EventHandler SceneSkipped;
 
         public override void Update()
         {
@@ -22,7 +21,7 @@ namespace LibraCore.Scenes
         {
             if (Input.isKeyDown(Microsoft.Xna.Framework.Input.Keys.Enter))
             {
-                TitleScreenSkipped?.Invoke(this, EventArgs.Empty);
+                SceneSkipped?.Invoke(this, EventArgs.Empty);
             }
         }
 

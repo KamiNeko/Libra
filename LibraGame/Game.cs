@@ -22,7 +22,7 @@ namespace LibraGame
             if (!transitionIsActive)
             {
                 var titleScreen = new TitleScreen();
-                titleScreen.TitleScreenSkipped += OnTitleScreenSkipped;
+                titleScreen.SceneSkipped += OnTitleScreenSkipped;
 
                 if (scene == null)
                 {
@@ -38,9 +38,9 @@ namespace LibraGame
             if (!transitionIsActive)
             {
                 var titleScreen = sender as TitleScreen;
-                titleScreen.TitleScreenSkipped -= OnTitleScreenSkipped;
+                titleScreen.SceneSkipped -= OnTitleScreenSkipped;
 
-                var levelScene = new LevelScene() { LevelEditorModeActive = false };
+                var levelScene = new LevelScene();
                 levelScene.GameWon += OnGameWon;
                 levelScene.GameOver += OnGameOver;
 
@@ -52,14 +52,42 @@ namespace LibraGame
         {
             var levelScene = sender as LevelScene;
             UnregisterLevelSceneHandlers(levelScene);
-            ShowTitleScreen();
+
+            var gameWonScene = new GameWonScene();
+            gameWonScene.SceneSkipped += OnGameWonSceneSkipped;
+            StartTransitionToNextScene(gameWonScene);
+        }
+
+        private void OnGameWonSceneSkipped(object sender, EventArgs e)
+        {
+            if (!transitionIsActive)
+            {
+                var gameWonScene = sender as GameWonScene;
+                gameWonScene.SceneSkipped -= OnGameWonSceneSkipped;
+
+                ShowTitleScreen();
+            }
         }
 
         private void OnGameOver(object sender, EventArgs e)
         {
             var levelScene = sender as LevelScene;
             UnregisterLevelSceneHandlers(levelScene);
-            ShowTitleScreen();
+
+            var gameOverScene = new GameOverScene();
+            gameOverScene.SceneSkipped += OnGameOverSceneSkipped;
+            StartTransitionToNextScene(gameOverScene);
+        }
+
+        private void OnGameOverSceneSkipped(object sender, EventArgs e)
+        {
+            if (!transitionIsActive)
+            {
+                var gameOverScene = sender as GameOverScene;
+                gameOverScene.SceneSkipped -= OnGameOverSceneSkipped;
+
+                ShowTitleScreen();
+            }
         }
 
         private void UnregisterLevelSceneHandlers(LevelScene levelScene)

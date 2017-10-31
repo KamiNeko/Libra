@@ -87,6 +87,8 @@
     <Compile Include="LevelBuilding\ShooterDescriptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenes\BaseScene.cs" />
+    <Compile Include="Scenes\GameOverScene.cs" />
+    <Compile Include="Scenes\GameWonScene.cs" />
     <Compile Include="Scenes\LevelScene.cs" />
     <Compile Include="Scenes\TitleScreen.cs" />
     <Compile Include="Systems\CollisionCheckSystem.cs" />
