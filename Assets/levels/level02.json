@@ -1,0 +1,98 @@
+{
+  "StartPosition": "75, 410",
+  "EntityDescriptors": [
+  {
+      "EntityName": "level-02-obstacle-01",
+      "Position": "50, 200",
+      "IsCollidable": true,
+      "TextureName": "level-02-obstacle",
+	  "MovementDescriptor": {
+	    "Active": true,
+		"Speed": 100,
+		"Positions": [ 
+			"50, 200" ,
+			"250, 200"
+		]
+	  }
+    },
+  {
+      "EntityName": "level-02-obstacle-02",
+      "Position": "50, 230",
+      "IsCollidable": true,
+      "TextureName": "level-02-obstacle",
+	  "MovementDescriptor": {
+	    "Active": true,
+		"Speed": 100,
+		"Positions": [ 
+			"50, 230" ,
+			"150, 230"
+		]
+	  }
+    },
+	{
+      "EntityName": "level-02-obstacle-03",
+      "Position": "50, 300",
+      "IsCollidable": true,
+      "TextureName": "level-02-obstacle",
+	  "MovementDescriptor": {
+	    "Active": true,
+		"Speed": 100,
+		"Positions": [ 
+			"50, 300" ,
+			"250, 300"
+		]
+	  }
+    },
+	{
+      "EntityName": "level-02-obstacle-04",
+      "Position": "70, 350",
+      "IsCollidable": true,
+      "TextureName": "level-02-obstacle",
+	  "MovementDescriptor": {
+	    "Active": true,
+		"Speed": 100,
+		"Positions": [ 
+			"70, 350" ,
+			"170, 350"
+		]
+	  }
+    },
+	{
+      "EntityName": "level-02-obstacle-05",
+      "Position": "50, 110",
+      "IsCollidable": true,
+      "TextureName": "level-02-obstacle",
+	  "MovementDescriptor": {
+	    "Active": true,
+		"Speed": 150,
+		"Positions": [ 
+			"50, 110", "115, 110",			
+			"50, 110", "115, 110",
+			"50, 110", "115, 110",
+			
+			"140, 110",
+			
+			"50, 110", "115, 110",
+			"50, 110", "115, 110",
+			
+			"140, 110",
+			
+			"50, 110", "115, 110",
+			
+			"140, 110",
+			
+			"50, 110", "115, 110",
+			"50, 110", "115, 110",
+			
+			"140, 110"
+		]
+	  }
+    },
+	{
+      "EntityName": "level",
+      "Position": "0, 0",
+      "IsCollidable": true,
+      "TextureName": "level-02"
+    }
+  ]
+}

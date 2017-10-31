@@ -1,3 +1,4 @@
 [
-  "level01.json"
+  "levels/level01.json",
+  "levels/level02.json"
 ]
