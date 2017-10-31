@@ -8,7 +8,7 @@ namespace LibraCore.LevelBuilding
         {
             AnimationDescriptor = new AnimationDescriptor { Active = false };
             MovementDescriptor = new MovementDescriptor { Active = false };
-            LightningDescriptor = new LightningDescriptor { Active = false };
+            PeriodicVisibilityToggleDescriptor = new PeriodicVisibilityToggleDescriptor { Active = false };
             AnimationLoopDescriptor = new AnimationLoopDescriptor { Active = false };
         }
 
@@ -21,7 +21,7 @@ namespace LibraCore.LevelBuilding
 
         public AnimationDescriptor AnimationDescriptor { get; set; }
         public MovementDescriptor MovementDescriptor { get; set; }
-        public LightningDescriptor LightningDescriptor { get; set; }
+        public PeriodicVisibilityToggleDescriptor PeriodicVisibilityToggleDescriptor { get; set; }
         public AnimationLoopDescriptor AnimationLoopDescriptor { get; set; }
     }
 }

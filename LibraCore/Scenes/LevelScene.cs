@@ -40,7 +40,7 @@ namespace LibraCore.Scenes
             AddEntityProcessor(new BulletControllerSystem());
             AddEntityProcessor(new EntityOutOfLevelBoundsTesterSystem());
             AddEntityProcessor(new ScriptedMovementSystem());
-            AddEntityProcessor(new LightningSystem());
+            AddEntityProcessor(new PeriodicVisibilityToggleSystem());
         }
 
         public override void Update()

@@ -88,12 +88,12 @@ namespace LibraCore.LevelBuilding
                 entity.addComponent(new PlayerControllerComponent());
             }
 
-            if (entityDescriptor.LightningDescriptor.Active)
+            if (entityDescriptor.PeriodicVisibilityToggleDescriptor.Active)
             {
-                entity.addComponent(new LightningComponent()
+                entity.addComponent(new PeriodicVisibilityToggleComponent()
                 {
-                    SoundEffectName = entityDescriptor.LightningDescriptor.SoundEffectName,
-                    TimeInvisible = entityDescriptor.LightningDescriptor.TimeInvisible
+                    SoundEffectName = entityDescriptor.PeriodicVisibilityToggleDescriptor.SoundEffectName,
+                    TimeInvisible = entityDescriptor.PeriodicVisibilityToggleDescriptor.TimeInvisible
                 });
             }
 
