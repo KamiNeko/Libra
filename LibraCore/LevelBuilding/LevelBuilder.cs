@@ -39,6 +39,7 @@ namespace LibraCore.LevelBuilding
             var entity = new Entity(LevelConstants.SpaceshipEntityName);
             var sprite = new Sprite(contentManager.Load<Texture2D>(SpaceshipTextureName));
             sprite.RenderLayer = 100;
+            sprite.Origin = new Vector2(0, 0);
 
             entity.addComponent(sprite);
             entity.addComponent(BuildSpaceshipDriveSprite());
@@ -61,18 +62,22 @@ namespace LibraCore.LevelBuilding
         {
             var spaceshipDriveTexture = contentManager.Load<Texture2D>(SpaceshipDriveTextureName);
             var spaceshipDriveSubtextures = Subtexture.subtexturesFromAtlas(spaceshipDriveTexture, 32, 32);
-
+            
             var fireAnimationSprite = new Sprite<int>(spaceshipDriveSubtextures[0]);
             fireAnimationSprite.SetRenderLayer(100);
             fireAnimationSprite.SetLocalOffset(new Vector2(1f, 28f));
 
-            fireAnimationSprite.AddAnimation(0, new SpriteAnimation(new List<Subtexture>()
+            var animation = new SpriteAnimation(new List<Subtexture>()
             {
                 spaceshipDriveSubtextures[0],
                 spaceshipDriveSubtextures[1],
                 spaceshipDriveSubtextures[2],
                 spaceshipDriveSubtextures[3]
-            }));
+            });
+
+            animation.setOrigin(new Vector2(0, 0));
+
+            fireAnimationSprite.AddAnimation(0, animation);
 
             fireAnimationSprite.Play(0);
 
@@ -133,6 +138,8 @@ namespace LibraCore.LevelBuilding
                         loop = false
                     };
 
+                    animation.setOrigin(new Vector2(0, 0));
+
                     if (entityDescriptor.AnimationLoopDescriptor.Active && entityDescriptor.AnimationLoopDescriptor.Key == animationFrameSet.Key)
                     {
                         animation.loop = true;
@@ -157,6 +164,7 @@ namespace LibraCore.LevelBuilding
             {
                 var sprite = new Sprite(contentManager.Load<Texture2D>(entityDescriptor.TextureName));
                 sprite.SetRenderLayer(200);
+                sprite.SetOrigin(new Vector2(0, 0));
 
                 if (entityDescriptor.IsCollidable)
                 {
