@@ -42,6 +42,7 @@ namespace LibraCore.Scenes
             AddEntityProcessor(new ScriptedMovementSystem());
             AddEntityProcessor(new PeriodicVisibilityToggleSystem());
             AddEntityProcessor(new ShooterSystem());
+            AddEntityProcessor(new DoorSystem());
         }
 
         public override void Update()

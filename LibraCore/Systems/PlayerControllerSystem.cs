@@ -1,4 +1,5 @@
 ﻿using LibraCore.Components;
+using LibraCore.Scenes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Nez;
@@ -65,6 +66,11 @@ namespace LibraCore.Systems
                 {
                     bulletControllerComponent.ShouldCreateBullet = true;
                 }
+            }
+
+            if (Input.isKeyReleased(Keys.Q))
+            {
+                ((LevelScene)scene).LevelEditorModeActive = !((LevelScene)scene).LevelEditorModeActive;
             }
 
             var playerControllerComponent = entity.getComponent<PlayerControllerComponent>();

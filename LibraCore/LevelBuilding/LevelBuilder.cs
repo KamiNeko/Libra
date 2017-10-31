@@ -96,6 +96,11 @@ namespace LibraCore.LevelBuilding
                 entity.addComponent(new ShooterComponent());
             }
 
+            if (entityDescriptor.DoorDescriptor.Active)
+            {
+                entity.addComponent(new DoorComponent() { TargetEntityName = entityDescriptor.DoorDescriptor.TargetEntityName });
+            }
+
             if (entityDescriptor.PeriodicVisibilityToggleDescriptor.Active)
             {
                 entity.addComponent(new PeriodicVisibilityToggleComponent()

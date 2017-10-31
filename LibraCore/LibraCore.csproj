@@ -62,6 +62,7 @@
     <Compile Include="Components\BulletComponent.cs" />
     <Compile Include="Components\BulletControllerComponent.cs" />
     <Compile Include="Components\CollisionCheckComponent.cs" />
+    <Compile Include="Components\DoorComponent.cs" />
     <Compile Include="Components\EntityOutOfLevelBoundsTesterComponent.cs" />
     <Compile Include="Components\PeriodicVisibilityToggleComponent.cs" />
     <Compile Include="Components\PlayerControllerComponent.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="LevelBuilding\AnimationDescriptor.cs" />
     <Compile Include="LevelBuilding\AnimationFrameSetDescriptor.cs" />
     <Compile Include="LevelBuilding\AnimationLoopDescriptor.cs" />
+    <Compile Include="LevelBuilding\DoorDescriptor.cs" />
     <Compile Include="LevelBuilding\EntityDescriptor.cs" />
     <Compile Include="LevelBuilding\LevelConstants.cs" />
     <Compile Include="LevelBuilding\LevelDescriptor.cs" />
@@ -90,6 +92,7 @@
     <Compile Include="Systems\CollisionCheckSystem.cs" />
     <Compile Include="Systems\BulletControllerSystem.cs" />
     <Compile Include="Systems\BulletSystem.cs" />
+    <Compile Include="Systems\DoorSystem.cs" />
     <Compile Include="Systems\EntityOutOfLevelBoundsTesterSystem.cs" />
     <Compile Include="Systems\BitPixelFieldSystem.cs" />
     <Compile Include="Systems\PeriodicVisibilityToggleSystem.cs" />

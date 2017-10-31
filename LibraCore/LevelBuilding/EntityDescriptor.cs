@@ -11,6 +11,7 @@ namespace LibraCore.LevelBuilding
             PeriodicVisibilityToggleDescriptor = new PeriodicVisibilityToggleDescriptor { Active = false };
             AnimationLoopDescriptor = new AnimationLoopDescriptor { Active = false };
             ShooterDescriptor = new ShooterDescriptor { Active = false };
+            DoorDescriptor = new DoorDescriptor { Active = false };
         }
 
         public string EntityName { get; set; }
@@ -24,5 +25,6 @@ namespace LibraCore.LevelBuilding
         public PeriodicVisibilityToggleDescriptor PeriodicVisibilityToggleDescriptor { get; set; }
         public AnimationLoopDescriptor AnimationLoopDescriptor { get; set; }
         public ShooterDescriptor ShooterDescriptor { get; set; }
+        public DoorDescriptor DoorDescriptor { get; set; }
     }
 }
