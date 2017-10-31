@@ -1,0 +1,132 @@
+{
+  "StartPosition": "117, 458",
+  "EntityDescriptors": [
+    {
+      "EntityName": "flower02",
+      "Position": "158, 153",
+      "IsCollidable": true,
+      "TextureName": "flower02",
+      "AnimationDescriptor": {
+        "Active": true,
+        "AnimationFramesPerSecond": 2,
+        "SubtextureWidth": 64,
+        "SubtextureHeight": 64,
+		"AnimationFrameSets": [
+			{
+				"Key": 0,
+		        "Frames": [ 0, 1, 2, 3 ]
+			}
+		]
+      },
+	  "AnimationLoopDescriptor": {
+		"Active": true,
+		"Key": 0
+	  }
+    },
+	{
+      "EntityName": "ball",
+      "Position": "180, 80",
+      "IsCollidable": true,
+      "TextureName": "bullet",
+	  "MovementDescriptor": {
+	    "Active": true,
+		"Speed": 75,
+		"Positions": [ 
+			"180, 80" ,
+			"245, 155",
+			"310, 75",
+			"245, 155"
+		]
+	  }
+    },
+	{
+      "EntityName": "lighning-01",
+      "Position": "95, 232",
+      "IsCollidable": true,
+      "TextureName": "lightning-01",
+	  "PeriodicVisibilityToggleDescriptor": {
+	    "Active": true,
+		"SoundEffectName": "lightning",
+		"TimeInvisible": 3 
+	  },
+	  "AnimationDescriptor": {
+        "Active": true,
+        "AnimationFramesPerSecond": 30,
+        "SubtextureWidth": 128,
+        "SubtextureHeight": 64,
+		"AnimationFrameSets": [
+	      {
+			  "Key": 0,			
+		      "Frames": [ 0, 1 ]
+	      },
+		  {
+			  "Key": 1,	
+		      "Frames": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 7, 6, 7, 8, 7, 6, 7, 8, 7, 6, 7, 8, 7, 6, 7, 8 ]
+	      }
+		]
+      }
+    },
+	{
+      "EntityName": "platform-01",
+      "Position": "210, 377",
+      "IsCollidable": true,
+      "TextureName": "platform-01",
+	  "MovementDescriptor": {
+	    "Active": true,
+		"Speed": 50,
+		"Positions": [ 
+			"210, 377" ,
+			"90, 377"
+		]
+	  }
+    },
+	{
+      "EntityName": "shooter",
+      "Position": "300, 380",
+      "IsCollidable": true,
+      "TextureName": "shooter",
+	  "MovementDescriptor": {
+	    "Active": true,
+	    "Speed": 50,
+		"Positions": [ 
+			"300, 380" ,
+			"450, 380"
+		]
+	  },
+	  "ShooterDescriptor": {
+	    "Active": true,
+		"Speed": 100,
+		"Direction": "0, -1",
+		"Offset": "0, -25",
+		"BulletCooldownInSeconds": 1
+	  }
+    },
+	{
+      "EntityName": "door-01",
+      "Position": "548, 313",
+      "IsCollidable": true,
+      "TextureName": "door-01",
+	  "DoorDescriptor": {
+	    "Active": true,
+		"TargetEntityName": "shooter"	
+	  }
+    },
+	{
+      "EntityName": "level",
+      "Position": "320, 240",
+      "IsCollidable": true,
+      "TextureName": "level01",
+      "AnimationDescriptor": {
+        "Active": false,
+        "StartAnimationFrame": 0,
+        "StopAnimationFrame": 0,
+        "AnimationFramesPerSecond": 0,
+        "SubtextureWidth": 0,
+        "SubtextureHeight": 0
+      },
+	  "MovementDescriptor": {
+	    "Active": false
+	  }
+    }
+  ]
+}
