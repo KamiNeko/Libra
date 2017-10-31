@@ -66,6 +66,7 @@
     <Compile Include="Components\PeriodicVisibilityToggleComponent.cs" />
     <Compile Include="Components\PlayerControllerComponent.cs" />
     <Compile Include="Components\ScriptedMovementComponent.cs" />
+    <Compile Include="Components\ShooterComponent.cs" />
     <Compile Include="Components\Utility\AnimatedSpriteWrapper.cs" />
     <Compile Include="Components\Utility\AnimatedSpriteWrapperFactory.cs" />
     <Compile Include="Components\Utility\IAnimatedSprite.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="LevelBuilding\LevelDescriptorWriter.cs" />
     <Compile Include="LevelBuilding\PeriodicVisibilityToggleDescriptor.cs" />
     <Compile Include="LevelBuilding\MovementDescriptor.cs" />
+    <Compile Include="LevelBuilding\ShooterDescriptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenes\BaseScene.cs" />
     <Compile Include="Scenes\LevelScene.cs" />
@@ -93,6 +95,7 @@
     <Compile Include="Systems\PeriodicVisibilityToggleSystem.cs" />
     <Compile Include="Systems\PlayerControllerSystem.cs" />
     <Compile Include="Systems\ScriptedMovementSystem.cs" />
+    <Compile Include="Systems\ShooterSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

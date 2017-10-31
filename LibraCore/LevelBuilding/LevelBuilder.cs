@@ -83,9 +83,17 @@ namespace LibraCore.LevelBuilding
         {
             var entity = new Entity(entityDescriptor.EntityName);
 
-            if (entityDescriptor.LevelEditorMovable)
+            if (entityDescriptor.ShooterDescriptor.Active)
             {
-                entity.addComponent(new PlayerControllerComponent());
+                entity.addComponent(new BulletControllerComponent()
+                {
+                    BulletCooldown = TimeSpan.FromSeconds(entityDescriptor.ShooterDescriptor.BulletCooldownInSeconds),
+                    Direction = entityDescriptor.ShooterDescriptor.Direction,
+                    Offset = entityDescriptor.ShooterDescriptor.Offset,
+                    Speed = entityDescriptor.ShooterDescriptor.Speed
+                });
+
+                entity.addComponent(new ShooterComponent());
             }
 
             if (entityDescriptor.PeriodicVisibilityToggleDescriptor.Active)

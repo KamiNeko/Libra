@@ -32,6 +32,15 @@ namespace LibraCore.Systems
 
             if (collisionTesterComponent.HasCollisions || entityBoundsOutOfScreenTesterComponent.OutOfBounds)
             {
+                foreach (var collidedEntity in collisionTesterComponent.HasCollisionsWith)
+                {
+                    var shooterComponent = collidedEntity.getComponent<ShooterComponent>();
+                    if (shooterComponent != null)
+                    {
+                        shooterComponent.Health--;
+                    }
+                }
+
                 var bulletShootingEntity = bulletComponent.BulletShootingEntity;
                 var bulletControllerComponent = bulletShootingEntity.getComponent<BulletControllerComponent>();
                 bulletControllerComponent.Bullet = null;

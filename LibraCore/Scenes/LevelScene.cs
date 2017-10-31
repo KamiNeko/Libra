@@ -41,6 +41,7 @@ namespace LibraCore.Scenes
             AddEntityProcessor(new EntityOutOfLevelBoundsTesterSystem());
             AddEntityProcessor(new ScriptedMovementSystem());
             AddEntityProcessor(new PeriodicVisibilityToggleSystem());
+            AddEntityProcessor(new ShooterSystem());
         }
 
         public override void Update()
@@ -50,19 +51,8 @@ namespace LibraCore.Scenes
             if (!sceneTransitionIsActive)
             {
                 var spaceshipEntity = Entities.findEntity(LevelConstants.SpaceshipEntityName);
-
-                if (ShipLeftLevel())
-                {
-                    if (LevelEditorModeActive)
-                    {
-                        spaceshipEntity.getComponent<Sprite>().Color = Color.Green;
-                    }
-                    else
-                    {
-                        SwitchToNextLevel();
-                    }
-                }
-                else if (ShipHasCollisions())
+                
+                if (ShipHasCollisions())
                 {
                     if (LevelEditorModeActive)
                     {
@@ -71,6 +61,17 @@ namespace LibraCore.Scenes
                     else
                     {
                         HandleShipCollision();
+                    }
+                }
+                else if (ShipLeftLevel())
+                {
+                    if (LevelEditorModeActive)
+                    {
+                        spaceshipEntity.getComponent<Sprite>().Color = Color.Green;
+                    }
+                    else
+                    {
+                        SwitchToNextLevel();
                     }
                 }
                 else if (LevelEditorModeActive)
@@ -137,7 +138,7 @@ namespace LibraCore.Scenes
 
             RecreateRemainingLifesText();
         }
-
+        
         private void FreezePlayerControlForSmallDuration()
         {
             EntityProcessors.getProcessor<PlayerControllerSystem>().Freeze(TimeSpan.FromMilliseconds(1000));
@@ -172,6 +173,7 @@ namespace LibraCore.Scenes
 
         private void SwitchToNextLevel()
         {
+            EntityProcessors.getProcessor<BulletSystem>().Reset();
             UnloadAllEntites();
 
             currentLevel++;
