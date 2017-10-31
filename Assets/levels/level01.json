@@ -44,7 +44,7 @@
       "Position": "95, 232",
       "IsCollidable": true,
       "TextureName": "lightning-01",
-	  "LightningDescriptor": {
+	  "PeriodicVisibilityToggleDescriptor": {
 	    "Active": true,
 		"SoundEffectName": "lightning",
 		"TimeInvisible": 3 
@@ -78,6 +78,37 @@
 			"210, 377" ,
 			"90, 377"
 		]
+	  }
+    },
+	{
+      "EntityName": "shooter",
+      "Position": "300, 380",
+      "IsCollidable": true,
+      "TextureName": "shooter",
+	  "MovementDescriptor": {
+	    "Active": true,
+	    "Speed": 50,
+		"Positions": [ 
+			"300, 380" ,
+			"450, 380"
+		]
+	  },
+	  "ShooterDescriptor": {
+	    "Active": true,
+		"Speed": 100,
+		"Direction": "0, -1",
+		"Offset": "0, -25",
+		"BulletCooldownInSeconds": 1
+	  }
+    },
+	{
+      "EntityName": "door-01",
+      "Position": "548, 313",
+      "IsCollidable": true,
+      "TextureName": "door-01",
+	  "DoorDescriptor": {
+	    "Active": true,
+		"TargetEntityName": "shooter"	
 	  }
     },
 	{
