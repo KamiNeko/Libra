@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Nez;
 using Nez.UI;
 
@@ -32,6 +33,12 @@ namespace LibraCore.Scenes
         public override void Update()
         {
             base.Update();
+
+            if (Input.isKeyReleased(Keys.F))
+            {
+                Screen.isFullscreen = !Screen.isFullscreen;
+                Screen.applyChanges();
+            }
         }
 
         protected const int ScreenSpaceRenderLayer = 999;

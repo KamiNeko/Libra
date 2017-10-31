@@ -73,12 +73,6 @@ namespace LibraCore.Systems
                 ((LevelScene)scene).LevelEditorModeActive = !((LevelScene)scene).LevelEditorModeActive;
             }
 
-            if (Input.isKeyReleased(Keys.F))
-            {
-                Screen.isFullscreen = !Screen.isFullscreen;
-                Screen.applyChanges();
-            }
-
             var playerControllerComponent = entity.getComponent<PlayerControllerComponent>();
             entity.position += moveDir * playerControllerComponent.Speed * Time.deltaTime;
         }
