@@ -26,7 +26,6 @@ namespace LibraCore.Scenes
 
             CreateLevelDescriptors();
             SwitchToNextLevel();
-            CreateRemainingLifesText();
             explosionSoundEffect = ContentManager.Load<SoundEffect>("explosion");
         }
 
@@ -187,6 +186,7 @@ namespace LibraCore.Scenes
             {
                 LoadEntitesOfCurrentLevelDescriptor();
                 FreezePlayerControlForSmallDuration();
+                RecreateRemainingLifesText();
             }
         }
 
@@ -213,8 +213,12 @@ namespace LibraCore.Scenes
         private void DestroyRemainingLifesText()
         {
             var textEntity = Entities.findEntity(RemainingLifesTextEntityName);
-            textEntity.detachFromScene();
-            Entities.remove(textEntity);
+
+            if (textEntity != null)
+            {
+                textEntity.detachFromScene();
+                Entities.remove(textEntity);
+            }
         }
 
         private void CreateRemainingLifesText()

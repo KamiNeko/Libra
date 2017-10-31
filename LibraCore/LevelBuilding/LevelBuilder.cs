@@ -50,8 +50,9 @@ namespace LibraCore.LevelBuilding
             entity.addComponent(new BulletControllerComponent()
             {
                 Direction = new Vector2(0f, 1f),
-                Offset = new Vector2(0, 32f),
-                Speed = 200f
+                Offset = new Vector2(16f, 32f),
+                Speed = 200f,
+                BulletCooldown = TimeSpan.FromMilliseconds(250)
             });
 
             entity.transform.setPosition(levelDescriptor.StartPosition);

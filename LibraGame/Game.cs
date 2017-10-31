@@ -14,6 +14,7 @@ namespace LibraGame
         {
             base.Initialize();
             Transform.shouldRoundPosition = false;
+            IsMouseVisible = false;
             ShowTitleScreen();
         }
 
