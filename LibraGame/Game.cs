@@ -6,7 +6,7 @@ namespace LibraGame
 {
     public class Game : Core
     {
-        public Game() : base(width: 1280, height: 960, isFullScreen: false, enableEntitySystems: true)
+        public Game() : base(width: 640, height: 480, isFullScreen: false, enableEntitySystems: true, windowTitle: "Libra")
         {
         }
 
@@ -40,7 +40,7 @@ namespace LibraGame
                 var titleScreen = sender as TitleScreen;
                 titleScreen.TitleScreenSkipped -= OnTitleScreenSkipped;
 
-                var levelScene = new LevelScene() { LevelEditorModeActive = true };
+                var levelScene = new LevelScene() { LevelEditorModeActive = false };
                 levelScene.GameWon += OnGameWon;
                 levelScene.GameOver += OnGameOver;
 
