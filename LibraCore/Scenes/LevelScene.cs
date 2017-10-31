@@ -220,7 +220,8 @@ namespace LibraCore.Scenes
         private void CreateRemainingLifesText()
         {
             var textEntity = CreateEntity(RemainingLifesTextEntityName);
-            textEntity.addComponent(new TextSprite(Graphics.instance.bitmapFont, $"LIFES: {lifes}", new Vector2(580, 460), Color.Black)).SetRenderLayer(ScreenSpaceRenderLayer);
+            var text = $"LEVEL: {currentLevel}        LIFES: {lifes}";
+            textEntity.addComponent(new TextSprite(Graphics.instance.bitmapFont, text, new Vector2(510, 460), Color.Black)).SetRenderLayer(ScreenSpaceRenderLayer);
         }
 
         private void HandleGameWon()
