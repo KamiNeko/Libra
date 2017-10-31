@@ -64,6 +64,7 @@
     <Compile Include="Components\CollisionCheckComponent.cs" />
     <Compile Include="Components\DoorComponent.cs" />
     <Compile Include="Components\EntityOutOfLevelBoundsTesterComponent.cs" />
+    <Compile Include="Components\HiddenLifeComponent.cs" />
     <Compile Include="Components\PeriodicVisibilityToggleComponent.cs" />
     <Compile Include="Components\PlayerControllerComponent.cs" />
     <Compile Include="Components\ScriptedMovementComponent.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="LevelBuilding\AnimationLoopDescriptor.cs" />
     <Compile Include="LevelBuilding\DoorDescriptor.cs" />
     <Compile Include="LevelBuilding\EntityDescriptor.cs" />
+    <Compile Include="LevelBuilding\HiddenLifeDescriptor.cs" />
     <Compile Include="LevelBuilding\LevelConstants.cs" />
     <Compile Include="LevelBuilding\LevelDescriptor.cs" />
     <Compile Include="LevelBuilding\LevelBuilder.cs" />
@@ -97,6 +99,7 @@
     <Compile Include="Systems\DoorSystem.cs" />
     <Compile Include="Systems\EntityOutOfLevelBoundsTesterSystem.cs" />
     <Compile Include="Systems\BitPixelFieldSystem.cs" />
+    <Compile Include="Systems\HiddenLifeSystem.cs" />
     <Compile Include="Systems\PeriodicVisibilityToggleSystem.cs" />
     <Compile Include="Systems\PlayerControllerSystem.cs" />
     <Compile Include="Systems\ScriptedMovementSystem.cs" />

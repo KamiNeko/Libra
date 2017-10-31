@@ -18,6 +18,7 @@ namespace LibraCore.Scenes
         public EventHandler GameWon;
 
         public bool LevelEditorModeActive { get; set; }
+        public int Lifes { get => lifes; set => lifes = value; }
 
         public override void Initialize()
         {
@@ -42,6 +43,7 @@ namespace LibraCore.Scenes
             AddEntityProcessor(new PeriodicVisibilityToggleSystem());
             AddEntityProcessor(new ShooterSystem());
             AddEntityProcessor(new DoorSystem());
+            AddEntityProcessor(new HiddenLifeSystem());
         }
 
         public override void Update()
@@ -98,11 +100,11 @@ namespace LibraCore.Scenes
 
         private void HandleShipCollision()
         {
-            lifes--;
+            Lifes--;
 
             explosionSoundEffect.Play();
 
-            if (lifes <= 0)
+            if (Lifes <= 0)
             {
                 HandleGameOver();
             }
@@ -204,7 +206,7 @@ namespace LibraCore.Scenes
             }
         }
 
-        private void RecreateRemainingLifesText()
+        public void RecreateRemainingLifesText()
         {
             DestroyRemainingLifesText();
             CreateRemainingLifesText();
@@ -224,7 +226,7 @@ namespace LibraCore.Scenes
         private void CreateRemainingLifesText()
         {
             var textEntity = CreateEntity(RemainingLifesTextEntityName);
-            var text = $"LEVEL: {currentLevel}        LIFES: {lifes}";
+            var text = $"LEVEL: {currentLevel}        LIFES: {Lifes}";
             textEntity.addComponent(new TextSprite(Graphics.instance.bitmapFont, text, new Vector2(510, 460), Color.Black)).SetRenderLayer(ScreenSpaceRenderLayer);
         }
 

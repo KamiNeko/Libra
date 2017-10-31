@@ -45,7 +45,7 @@
     },
 	{
       "EntityName": "level-02-obstacle-04",
-      "Position": "70, 350",
+      "Position": "70, 330",
       "IsCollidable": true,
       "TextureName": "level-02-obstacle",
 	  "MovementDescriptor": {
@@ -89,10 +89,26 @@
 	  }
     },
 	{
+      "EntityName": "hidden-level-part",
+      "Position": "133, 353",
+      "IsCollidable": false,
+      "TextureName": "level-02-hidden-part"
+    },	
+	{
       "EntityName": "level",
       "Position": "0, 0",
       "IsCollidable": true,
       "TextureName": "level-02"
-    }
+    },
+	{
+      "EntityName": "extra-life",
+      "Position": "157, 369",
+      "IsCollidable": true,
+	  "TextureName": "level-02-extra-life",
+	  "HiddenLifeDescriptor": {
+		"Active": true,
+		"ExtraLifes": 10
+	  }
+    },
   ]
 }

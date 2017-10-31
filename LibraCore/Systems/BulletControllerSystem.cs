@@ -52,7 +52,7 @@ namespace LibraCore.Systems
             {
                 bulletEntity = scene.CreateEntity(CreateBulletEntityName(bulletShootingEntity));
                 var sprite = new Sprite(scene.ContentManager.Load<Texture2D>("bullet"));
-                sprite.SetRenderLayer(200);
+                sprite.SetRenderLayer(500);
 
                 bulletEntity.addComponent(new BulletComponent()
                 {

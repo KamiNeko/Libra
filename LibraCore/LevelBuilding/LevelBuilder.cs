@@ -38,7 +38,7 @@ namespace LibraCore.LevelBuilding
         {
             var entity = new Entity(LevelConstants.SpaceshipEntityName);
             var sprite = new Sprite(contentManager.Load<Texture2D>(SpaceshipTextureName));
-            sprite.RenderLayer = 100;
+            sprite.RenderLayer = 500;
             sprite.Origin = new Vector2(0, 0);
 
             entity.addComponent(sprite);
@@ -63,9 +63,9 @@ namespace LibraCore.LevelBuilding
         {
             var spaceshipDriveTexture = contentManager.Load<Texture2D>(SpaceshipDriveTextureName);
             var spaceshipDriveSubtextures = Subtexture.subtexturesFromAtlas(spaceshipDriveTexture, 32, 32);
-            
+
             var fireAnimationSprite = new Sprite<int>(spaceshipDriveSubtextures[0]);
-            fireAnimationSprite.SetRenderLayer(100);
+            fireAnimationSprite.SetRenderLayer(500);
             fireAnimationSprite.SetLocalOffset(new Vector2(1f, 28f));
 
             var animation = new SpriteAnimation(new List<Subtexture>()
@@ -100,6 +100,12 @@ namespace LibraCore.LevelBuilding
                 });
 
                 entity.addComponent(new ShooterComponent());
+            }
+
+            if (entityDescriptor.HiddenLifeDescriptor.Active)
+            {
+                entity.addComponent(new HiddenLifeComponent() { Lifes = entityDescriptor.HiddenLifeDescriptor.ExtraLifes });
+                entity.addComponent(new CollisionCheckComponent());
             }
 
             if (entityDescriptor.DoorDescriptor.Active)
@@ -161,7 +167,7 @@ namespace LibraCore.LevelBuilding
 
                 entity.addComponent(animatedSprite);
             }
-            else
+            else if (!string.IsNullOrEmpty(entityDescriptor.TextureName))
             {
                 var sprite = new Sprite(contentManager.Load<Texture2D>(entityDescriptor.TextureName));
                 sprite.SetRenderLayer(200);
