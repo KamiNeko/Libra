@@ -14,7 +14,9 @@ namespace LibraCore.Scenes
 
         private void RaiseSkipEventOnKeyPress()
         {
-            if (Input.isKeyDown(Keys.Enter))
+            GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+
+            if (Input.isKeyDown(Keys.Enter) || gamePadState.Buttons.X == ButtonState.Pressed)
             {
                 SceneSkipped?.Invoke(this, EventArgs.Empty);
             }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Nez;
 using Nez.Sprites;
 using Nez.Textures;
@@ -19,7 +20,9 @@ namespace LibraCore.Scenes
         
         private void RaiseSkipEventOnKeyPress()
         {
-            if (Input.isKeyDown(Microsoft.Xna.Framework.Input.Keys.Enter))
+            GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+
+            if (Input.isKeyDown(Keys.Enter) || gamePadState.Buttons.X == ButtonState.Pressed)
             {
                 SceneSkipped?.Invoke(this, EventArgs.Empty);
             }

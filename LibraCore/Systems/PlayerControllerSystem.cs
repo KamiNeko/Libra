@@ -40,25 +40,37 @@ namespace LibraCore.Systems
 
             var moveDir = Vector2.Zero;
 
-            if (Input.isKeyDown(Keys.Left))
+            GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+
+            for (int i = 0; i < 10; ++i)
+            {
+                var state = GamePad.GetState((PlayerIndex)i);
+                if (state.IsConnected)
+                {
+                    gamePadState = state;
+                    break;
+                }
+            }
+            
+            if (Input.isKeyDown(Keys.Left) || gamePadState.ThumbSticks.Left.X < 0)
             {
                 moveDir.X = -1f;
             }
-            else if (Input.isKeyDown(Keys.Right))
+            else if (Input.isKeyDown(Keys.Right) || gamePadState.ThumbSticks.Left.X > 0)
             {
                 moveDir.X = 1f;
             }
 
-            if (Input.isKeyDown(Keys.Up))
+            if (Input.isKeyDown(Keys.Up) || gamePadState.ThumbSticks.Left.Y > 0)
             {
                 moveDir.Y = -1f;
             }
-            else if (Input.isKeyDown(Keys.Down))
+            else if (Input.isKeyDown(Keys.Down) || gamePadState.ThumbSticks.Left.Y < 0)
             {
                 moveDir.Y = 1f;
             }
 
-            if (Input.isKeyDown(Keys.Space))
+            if (Input.isKeyDown(Keys.Space) || gamePadState.Buttons.X == ButtonState.Pressed)
             {
                 var bulletControllerComponent = entity.getComponent<BulletControllerComponent>();
 

@@ -1,0 +1,212 @@
+{
+  "StartPosition": "75, 410",
+  "EntityDescriptors": [
+	{
+      "EntityName": "lighning-01",
+      "Position": "285, 347",
+      "IsCollidable": true,
+      "TextureName": "level-03-lightning-01",
+	  "PeriodicVisibilityToggleDescriptor": {
+	    "Active": true,
+		"SoundEffectName": "lightning",
+		"TimeInvisible": 3 
+	  },
+	  "AnimationDescriptor": {
+        "Active": true,
+        "AnimationFramesPerSecond": 30,
+        "SubtextureWidth": 9,
+        "SubtextureHeight": 50,
+		"AnimationFrameSets": [
+	      {
+			  "Key": 0,			
+		      "Frames": [ 0 ]
+	      },
+		  {
+			  "Key": 1,	
+		      "Frames": [ 1, 2, 3, 2, 1, 2, 3, 2, 1 ]
+	      }
+		]
+      }
+    },
+	
+	{
+      "EntityName": "lighning-02",
+      "Position": "198, 348",
+      "IsCollidable": true,
+      "TextureName": "level-03-lightning-02",
+	  "PeriodicVisibilityToggleDescriptor": {
+	    "Active": true,
+		"SoundEffectName": "lightning",
+		"TimeInvisible": 5 
+	  },
+	  "AnimationDescriptor": {
+        "Active": true,
+        "AnimationFramesPerSecond": 30,
+        "SubtextureWidth": 9,
+        "SubtextureHeight": 85,
+		"AnimationFrameSets": [
+	      {
+			  "Key": 0,			
+		      "Frames": [ 0 ]
+	      },
+		  {
+			  "Key": 1,	
+		      "Frames": [ 1, 2, 3, 2, 1, 2, 3, 2, 1 ]
+	      }
+		]
+      }
+    },
+	
+	{
+      "EntityName": "lighning-03",
+      "Position": "334, 342",
+      "IsCollidable": true,
+      "TextureName": "level-03-lightning-02",
+	  "PeriodicVisibilityToggleDescriptor": {
+	    "Active": true,
+		"SoundEffectName": "lightning",
+		"TimeInvisible": 2 
+	  },
+	  "AnimationDescriptor": {
+        "Active": true,
+        "AnimationFramesPerSecond": 30,
+        "SubtextureWidth": 9,
+        "SubtextureHeight": 85,
+		"AnimationFrameSets": [
+	      {
+			  "Key": 0,			
+		      "Frames": [ 0 ]
+	      },
+		  {
+			  "Key": 1,	
+		      "Frames": [ 1, 2, 3, 2, 1, 2, 3, 2, 1 ]
+	      }
+		]
+      }
+    },
+	
+	{
+      "EntityName": "lighning-04",
+      "Position": "410, 347",
+      "IsCollidable": true,
+      "TextureName": "level-03-lightning-01",
+	  "PeriodicVisibilityToggleDescriptor": {
+	    "Active": true,
+		"SoundEffectName": "lightning",
+		"TimeInvisible": 3
+	  },
+	  "AnimationDescriptor": {
+        "Active": true,
+        "AnimationFramesPerSecond": 30,
+        "SubtextureWidth": 9,
+        "SubtextureHeight": 50,
+		"AnimationFrameSets": [
+	      {
+			  "Key": 0,			
+		      "Frames": [ 0 ]
+	      },
+		  {
+			  "Key": 1,	
+		      "Frames": [ 1, 2, 3, 2, 1, 2, 3, 2, 1 ]
+	      }
+		]
+      }
+    },
+	
+	{
+      "EntityName": "lighning-05",
+      "Position": "496, 346",
+      "IsCollidable": true,
+      "TextureName": "level-03-lightning-01",
+	  "PeriodicVisibilityToggleDescriptor": {
+	    "Active": true,
+		"SoundEffectName": "lightning",
+		"TimeInvisible": 4
+	  },
+	  "AnimationDescriptor": {
+        "Active": true,
+        "AnimationFramesPerSecond": 30,
+        "SubtextureWidth": 9,
+        "SubtextureHeight": 50,
+		"AnimationFrameSets": [
+	      {
+			  "Key": 0,			
+		      "Frames": [ 0 ]
+	      },
+		  {
+			  "Key": 1,	
+		      "Frames": [ 1, 2, 3, 2, 1, 2, 3, 2, 1 ]
+	      }
+		]
+      }
+    },
+	
+	{
+      "EntityName": "lighning-06",
+      "Position": "536, 346",
+      "IsCollidable": true,
+      "TextureName": "level-03-lightning-01",
+	  "PeriodicVisibilityToggleDescriptor": {
+	    "Active": true,
+		"SoundEffectName": "lightning",
+		"TimeInvisible": 10
+	  },
+	  "AnimationDescriptor": {
+        "Active": true,
+        "AnimationFramesPerSecond": 30,
+        "SubtextureWidth": 9,
+        "SubtextureHeight": 50,
+		"AnimationFrameSets": [
+	      {
+			  "Key": 0,			
+		      "Frames": [ 0 ]
+	      },
+		  {
+			  "Key": 1,	
+		      "Frames": [ 1, 2, 3, 2, 1, 2, 3, 2, 1 ]
+	      }
+		]
+      }
+    },
+	
+	{
+      "EntityName": "door",
+      "Position": "128, 174",
+      "IsCollidable": true,
+      "TextureName": "level-03-door",
+	  "DoorDescriptor": {
+	    "Active": true,
+		"TargetEntityName": "shooter"	
+	  }
+    },
+	
+	{
+      "EntityName": "shooter",
+      "Position": "150, 250",
+      "IsCollidable": true,
+      "TextureName": "shooter",
+	  "MovementDescriptor": {
+	    "Active": true,
+	    "Speed": 50,
+		"Positions": [ 
+			"150, 250" ,
+			"480, 250"
+		]
+	  },
+	  "ShooterDescriptor": {
+	    "Active": true,
+		"Speed": 100,
+		"Direction": "0, -1",
+		"Offset": "10, -5",
+		"BulletCooldownInSeconds": 1
+	  }
+    },
+	
+	{
+      "EntityName": "level",
+      "Position": "0, 0",
+      "IsCollidable": true,
+      "TextureName": "level-03"
+    },
+  ]
+}
